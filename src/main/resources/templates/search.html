@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>社員情報検索</title>
+</head>
+<body>
+    <h1>社員情報検索</h1>
+    <form action="/search" method="get">
+        <label for="id">社員ID:</label>
+        <input type="text" id="id" name="id">
+        <label for="name">名前:</label>
+        <input type="text" id="name" name="name">
+        <label for="minAge">年齢（最小）:</label>
+        <input type="text" id="minAge" name="minAge">
+        <label for="maxAge">年齢（最大）:</label>
+        <input type="text" id="maxAge" name="maxAge">
+        <label for="startDate">開始日:</label>
+        <input type="text" id="startDate" name="startDate" placeholder="yyyy/MM/dd">
+        <label for="endDate">終了日:</label>
+        <input type="text" id="endDate" name="endDate" placeholder="yyyy/MM/dd">
+        <button type="submit">検索</button>
+        <button type="reset">クリア</button>
+    </form>
+
+    <div>
+        <p th:if="${error}" th:text="${error}"></p>
+        <p>検索結果: <span th:text="${resultCount}"></span>件</p>
+        <table th:if="${employees}" border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名前</th>
+                    <th>部署</th>
+                    <th>年齢</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="employee : ${employees}">
+                    <td th:text="${employee.id}"></td>
+                    <td th:text="${employee.name}"></td>
+                    <td th:text="${employee.department}"></td>
+                    <td th:text="${employee.age}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
