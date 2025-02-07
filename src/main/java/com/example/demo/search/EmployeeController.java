@@ -24,14 +24,11 @@ public class EmployeeController {
                          @RequestParam(required = false) String endDate,
                          Model model) {
         try {
-            // 検索実行
             List<Employee> employees = service.searchEmployees(id, name, minAge, maxAge, startDate, endDate);
 
-            // 結果をモデルに追加
             model.addAttribute("employees", employees);
             model.addAttribute("resultCount", employees.size());
         } catch (IllegalArgumentException e) {
-            // 入力エラー時
             model.addAttribute("error", e.getMessage());
         }
         return "search";
@@ -39,7 +36,6 @@ public class EmployeeController {
 
     @GetMapping("/clear")
     public String clearSearch(Model model) {
-        // フォームのリセット（必要であれば初期値を設定）
         model.addAttribute("employees", null);
         model.addAttribute("resultCount", 0);
         return "search";
