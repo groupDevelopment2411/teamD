@@ -1,6 +1,121 @@
-@charset "UTF-8";
-
-h1{
-	color: red;
+/* 🌟 全体のスタイル */
+body {
+    background-color: #f8f8f8;
+    font-family: Arial, sans-serif;
 }
 
+/* 🌟 タイトル */
+.header-title {
+    color: red;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* 🌟 メニュー・登録ボタン */
+.menu-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.menu-btn, .register-btn {
+    background-color: lightgray;
+    padding: 5px 15px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.register-btn {
+    background-color: yellow;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+/* 🌟 検索フォーム */
+.search-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    border-radius: 8px;
+}
+
+/* 🌟 入力フィールド */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    gap: 10px;
+}
+
+.form-group label {
+    width: 80px;
+    font-weight: bold;
+    text-align: right;
+}
+
+input[type="text"], input[type="date"] {
+    padding: 5px;
+    border: 1px solid black;
+    width: 120px;
+}
+
+/* 🌟 ボタン配置 */
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.search-btn, .clear-btn {
+    padding: 5px 15px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.search-btn {
+    background-color: yellow;
+    font-weight: bold;
+}
+
+.clear-btn {
+    background-color: white;
+}
+
+/* 🌟 検索結果エリア */
+.table-container {
+    padding: 10px;
+    margin-top: 10px;
+    width: 800px;
+}
+
+/* 🌟 テーブル */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+
+th {
+    background-color: yellow;
+    font-weight: bold;
+}
+
+/* 🌟 削除ボタン */
+.delete-btn {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+	margin-top: 10px;
+    background-color: red;
+    color: white;
+    padding:10px;
+    cursor: pointer;
+}
