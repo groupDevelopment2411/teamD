@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class EmployeeService {
@@ -14,12 +15,20 @@ public class EmployeeService {
     }
 
     public List<Employee> searchEmployees(String id, String name, String minAge, String maxAge, 
-			LocalDate startDateFrom, LocalDate startDateTo, 
-			LocalDate endDateFrom, LocalDate endDateTo) {
-    	Long employeeId = (id != null && !id.isEmpty()) ? Long.parseLong(id) : null;
-    	Integer min = (minAge != null && !minAge.isEmpty()) ? Integer.parseInt(minAge) : null;
-    	Integer max = (maxAge != null && !maxAge.isEmpty()) ? Integer.parseInt(maxAge) : null;
+                                          LocalDate startDateFrom, LocalDate startDateTo, 
+                                          LocalDate endDateFrom, LocalDate endDateTo) {
+        Long employeeId = (id != null && !id.isEmpty()) ? Long.parseLong(id) : null;
+        Integer min = (minAge != null && !minAge.isEmpty()) ? Integer.parseInt(minAge) : null;
+        Integer max = (maxAge != null && !maxAge.isEmpty()) ? Integer.parseInt(maxAge) : null;
 
-    	return repository.findEmployees(employeeId, name, min, max, startDateFrom, startDateTo, endDateFrom, endDateTo);
-}
+        return repository.findEmployees(employeeId, name, min, max, startDateFrom, startDateTo, endDateFrom, endDateTo);
+    }
+
+    @Transactional
+    public void deleteEmployees(List<Long> ids) {
+        if (ids == null || ids.isEmpty()) {
+            throw new IllegalArgumentException("削除対象のIDが選択されていません");
+        }
+        repository.deleteAllById(ids);
+    }
 }
