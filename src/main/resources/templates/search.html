@@ -2,54 +2,90 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>社員情報検索</title>
-	<link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="search.css">
 </head>
 <body>
-    <h1>社員情報検索</h1>
-    <form action="/search" method="get">
-        <label for="id">社員ID</label>
-        <input type="text" id="id" name="id">
-        <label for="name">名前</label>
-        <input type="text" id="name" name="name">
-        <label for="minAge">年齢</label>
-        <input type="text" id="minAge" name="minAge">
-        <label for="maxAge">～</label>
-        <input type="text" id="maxAge" name="maxAge">
-        <label for="startDate">開始日</label>
-        <input type="text" id="startDate" name="startDate">
-		<label for="startDate">～</label>
-		<input type="text" id="startDate" name="startDate">
-        <label for="endDate">終了日</label>
-        <input type="text" id="endDate" name="endDate">
-		<label for="endDate">～</label>
-		<input type="text" id="endDate" name="endDate">
-        <button type="submit">検索</button>
-        <button type="reset">クリア</button>
-    </form>
+	<h1 class="header-title">社員情報検索</h1>
 
-    <div>
-        <p th:if="${error}" th:text="${error}"></p>
+	<div class="menu-container">
+	    <button class="menu-btn">メニュー</button>
+	    <button class="register-btn">登録</button>
+	</div>
+    
+	<div class="search-container">
+	    <form action="/search" method="get">
+	        <div class="form-group">
+                <label for="id">社員ID</label>
+                <input type="text" id="id" name="id">
+                <label for="name">社員名</label>
+                <input type="text" id="name" name="name">
+            </div>
+            
+            <div class="form-group">
+                <label for="minAge">年齢</label>
+                <input type="text" id="minAge" name="minAge">
+                <label for="maxAge">～</label>
+                <input type="text" id="maxAge" name="maxAge">
+            </div>
+            
+            <div class="form-group">
+                <label for="startDateFrom">開始日</label>
+                <input type="date" id="startDateFrom" name="startDateFrom">
+                <label for="startDateTo">～</label>
+                <input type="date" id="startDateTo" name="startDateTo">
+            </div>
+            
+            <div class="form-group">
+                <label for="endDateFrom">終了</label>
+                <input type="date" id="endDateFrom" name="endDateFrom">
+                <label for="endDateTo">～</label>
+                <input type="date" id="endDateTo" name="endDateTo">
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="search-btn">検索</button>
+            <button type="reset" class="clear-btn">クリア</button>
+        </div>
+    </form>
+    
+    <div class="table-container">
+        <p th:if="${error}" class="error-message" th:text="${error}"></p>
         <p>検索結果: <span th:text="${resultCount}"></span>件</p>
-        <table th:if="${employees}" border="1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>氏名</th>
-                    <th>年齢</th>
-					<th>開始日</th>
-					<th>終了日</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="employee : ${employees}">
-                    <td th:text="${employee.id}"></td>
-                    <td th:text="${employee.name}"></td>
-                    <td th:text="${employee.age}"></td>
-					<td th:text="${employee.startDate}"></td>
-					<td th:text="${employee.endDate}"></td>
-                </tr>
-            </tbody>
-        </table>
+        
+		<form action="/deleteConfirm" method="post" id="deleteForm">
+		    <table th:if="${employees}" border="1">
+		        <thead>
+		            <tr>
+		                <th>選択</th>
+		                <th>ID</th>
+		                <th>氏名</th>
+		                <th>年齢</th>
+		                <th>開始日</th>
+		                <th>終了日</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr th:each="employee : ${employees}">
+		                <td>
+		                    <input type="checkbox" name="selectedIds" th:value="${employee.id}" onclick="toggleDeleteButton()">
+		                </td>
+		                <td th:text="${employee.id}"></td>
+		                <td th:text="${employee.name}"></td>
+		                <td th:text="${employee.age}"></td>
+		                <td th:text="${employee.startDate}"></td>
+		                <td th:text="${employee.endDate}"></td>
+		            </tr>
+		        </tbody>
+		    </table>
+		</form>
     </div>
+	<button type="submit" id="deleteButton" disabled>削除</button>
+			<script>
+			function toggleDeleteButton() {
+			    let checkboxes = document.querySelectorAll('input[name="selectedIds"]:checked');
+			    document.getElementById('deleteButton').disabled = checkboxes.length === 0;
+			}
+			</script>
 </body>
 </html>
