@@ -29,21 +29,47 @@ public class EmployeeController {
                          @RequestParam(required = false) String endDateFrom,
                          @RequestParam(required = false) String endDateTo,
                          Model model) {
-    	 try {
-    	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    	        LocalDate parsedStartDateFrom = (startDateFrom != null && !startDateFrom.isEmpty()) ? LocalDate.parse(startDateFrom, formatter) : null;
-    	        LocalDate parsedStartDateTo = (startDateTo != null && !startDateTo.isEmpty()) ? LocalDate.parse(startDateTo, formatter) : null;
-    	        LocalDate parsedEndDateFrom = (endDateFrom != null && !endDateFrom.isEmpty()) ? LocalDate.parse(endDateFrom, formatter) : null;
-    	        LocalDate parsedEndDateTo = (endDateTo != null && !endDateTo.isEmpty()) ? LocalDate.parse(endDateTo, formatter) : null;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
-    	        List<Employee> employees = service.searchEmployees(id, name, minAge, maxAge, parsedStartDateFrom, parsedStartDateTo, parsedEndDateFrom, parsedEndDateTo);
-    	        model.addAttribute("employees", employees);
-    	        model.addAttribute("resultCount", employees.size());
-    	    } catch (DateTimeParseException e) {
-    	        model.addAttribute("error", "日付の形式が正しくありません。正しい形式で入力してください。");
-    	    }
-    	    return "search";
-    	}
+            // 入力チェック
+            if (id != null && !id.matches("\\d*")) {
+                model.addAttribute("error", "社員IDは数字ではありません");
+                return "search";
+            }
+            if ((minAge != null && !minAge.matches("\\d*")) || (maxAge != null && !maxAge.matches("\\d*"))) {
+                model.addAttribute("error", "年齢は数字ではありません");
+                return "search";
+            }
+            
+            LocalDate parsedStartDateFrom = parseDate(startDateFrom, formatter, model);
+            LocalDate parsedStartDateTo = parseDate(startDateTo, formatter, model);
+            LocalDate parsedEndDateFrom = parseDate(endDateFrom, formatter, model);
+            LocalDate parsedEndDateTo = parseDate(endDateTo, formatter, model);
+
+            if (model.containsAttribute("error")) {
+                return "search";
+            }
+
+            List<Employee> employees = service.searchEmployees(id, name, minAge, maxAge, parsedStartDateFrom, parsedStartDateTo, parsedEndDateFrom, parsedEndDateTo);
+            model.addAttribute("employees", employees);
+            model.addAttribute("resultCount", employees.size());
+        } catch (DateTimeParseException e) {
+            model.addAttribute("error", "日付入力が誤っています");
+        }
+        return "search";
+    }
+
+    private LocalDate parseDate(String date, DateTimeFormatter formatter, Model model) {
+        if (date != null && !date.isEmpty()) {
+            try {
+                return LocalDate.parse(date, formatter);
+            } catch (DateTimeParseException e) {
+                model.addAttribute("error", "日付入力が誤っています");
+            }
+        }
+        return null;
+    }
 
     @GetMapping("/clear")
     public String clearSearch(Model model) {
@@ -51,26 +77,24 @@ public class EmployeeController {
         model.addAttribute("resultCount", 0);
         return "search";
     }
-    
+
     @Controller
     public class NavigationController {
-        
-        @GetMapping("/menu")//メニュー画面のリンク名
+
+        @GetMapping("/menu")
         public String menu() {
-            return "menu"; // メニュー画面のHTML（menu.html）
+            return "menu";
         }
 
-        @GetMapping("/register")//登録画面のリンク名
+        @GetMapping("/register")
         public String register() {
-            return "register"; // 登録画面のHTML名
+            return "register";
         }
-        
 
-@		PostMapping("/deleteConfirm")//削除画面のリンク名
-        public String deleteConfirm(@RequestParam List<Long> selectedIds, Model model) {
+        @PostMapping("/delete")
+        public String delete(@RequestParam(required = false) List<Long> selectedIds, Model model) {
             model.addAttribute("selectedIds", selectedIds);
-            return "deleteConfirm"; // 削除確認画面へ遷移
-        } 
+            return "delete";
         }
-
     }
+}
