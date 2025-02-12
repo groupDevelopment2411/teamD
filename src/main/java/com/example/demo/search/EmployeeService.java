@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class EmployeeService {
@@ -22,13 +21,5 @@ public class EmployeeService {
         Integer max = (maxAge != null && !maxAge.isEmpty()) ? Integer.parseInt(maxAge) : null;
 
         return repository.findEmployees(employeeId, name, min, max, startDateFrom, startDateTo, endDateFrom, endDateTo);
-    }
-
-    @Transactional
-    public void deleteEmployees(List<Long> ids) {
-        if (ids == null || ids.isEmpty()) {
-            throw new IllegalArgumentException("削除対象のIDが選択されていません");
-        }
-        repository.deleteAllById(ids);
     }
 }
