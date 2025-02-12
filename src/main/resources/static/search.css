@@ -1,18 +1,16 @@
-/* 🌟 全体のスタイル */
 body {
     background-color: #f8f8f8;
     font-family: Arial, sans-serif;
+	font-size: 1rem;
 }
 
-/* 🌟 タイトル */
 .header-title {
     color: red;
-    font-size: 24px;
+    font-size: 2rem;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-/* 🌟 メニュー・登録ボタン */
 .menu-container {
     display: flex;
     align-items: center;
@@ -20,6 +18,8 @@ body {
 }
 
 .menu-btn, .register-btn {
+	width: 20%;
+	padding: 15px 20px;
     background-color: lightgray;
     padding: 5px 15px;
     border: 1px solid black;
@@ -32,36 +32,38 @@ body {
     margin-left: 5px;
 }
 
-/* 🌟 検索フォーム */
 .search-container {
-    padding: 10px;
+    position: relative;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
     width: 600px;
-    border-radius: 8px;
+    padding: 10px;
 }
 
-/* 🌟 入力フィールド */
 .form-group {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
-    gap: 10px;
+	gap: 5px;
 }
 
 .form-group label {
-    width: 80px;
+    width: 50px;
     font-weight: bold;
-    text-align: right;
+    text-align: center;
 }
 
-input[type="text"], input[type="date"] {
+input[type="text"] {
     padding: 5px;
     border: 1px solid black;
-    width: 120px;
+    width: 150px; 
 }
 
-/* 🌟 ボタン配置 */
+#endDateFrom{
+	justify-content: flex-end;
+}
+
 .button-group {
     display: flex;
     justify-content: flex-end;
@@ -70,28 +72,28 @@ input[type="text"], input[type="date"] {
 }
 
 .search-btn, .clear-btn {
-    padding: 5px 15px;
-    border: 1px solid black;
+	align-items: flex-end;
+    width: 120px;
+    padding: 10px;
+    font-weight: bold;
+    border: 2px solid black;
     cursor: pointer;
 }
 
 .search-btn {
     background-color: yellow;
-    font-weight: bold;
 }
 
 .clear-btn {
     background-color: white;
 }
 
-/* 🌟 検索結果エリア */
 .table-container {
     padding: 10px;
     margin-top: 10px;
     width: 800px;
 }
 
-/* 🌟 テーブル */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -108,14 +110,18 @@ th {
     font-weight: bold;
 }
 
-/* 🌟 削除ボタン */
+.delete-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
 .delete-btn {
-	display: flex;
-	justify-content: flex-end;
-	gap: 10px;
-	margin-top: 10px;
-    background-color: red;
-    color: white;
-    padding:10px;
+    width: 120px;
+    padding: 10px;
+    background-color: yellow;
+    border: 2px solid black;
+    color: black;
     cursor: pointer;
+	font-weight: bold;
 }
