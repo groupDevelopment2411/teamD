@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>	社員情報管理システム</title>
+<link rel="stylesheet" href="./index.css">
 </head>
 <body>
-			
-	<h1>社員情報管理システムログイン画面</h1>
-	<ul>
-		<li>ユーザー名</li>
-		<li><input type="text" maxlength="200"></li>
-		<li>パスワード</li>
-		<li><input type="password" maxlength="200"></li>
+	<div class="content">
+		<form action="/Login" method="post">
+		<h1>社員情報管理システムログイン画面</h1>
 		
-	</ul>
+			<label for="username">ID</label>
+			<input type="text" name="name" maxlength="200">
+			<label for="password">パスワード</label>
+			<input type="password" name="pass" maxlength="200">
+		
+		
 		<input type="submit" value="ログイン">
-		<input type="submit" value="戻る">
-	
+		
+		</form>
+	</div>
 
 </body>
 </html>

@@ -1,5 +1,45 @@
 @charset "UTF-8";
-div{
-	list-style: none;
-	}
 
+body{
+     margin-left: 25%;
+     margin-right: 25%;
+     margin-top: 20%;
+     margin-bottom: 20%;
+     text-align: center;
+     width: 50%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: beige;
+}
+
+label[for=username]{
+     margin: 0 auto;
+     display: flex;
+     font-weight: bold;
+     width: 40%;
+     padding: 10px;
+}
+label[for=password]{
+     margin: 0 auto;
+     display: flex;
+     font-weight: bold;
+     width: 40%;
+     padding: 10px;
+    
+}
+input[type=text]{
+     margin: 0 auto;
+     display: flex;
+     
+}
+input[type=password]{
+     margin: 0 auto;
+     display: flex;
+     
+}
+
+input[type=submit]{
+     margin: 0 auto;
+     display: flex;
+}
