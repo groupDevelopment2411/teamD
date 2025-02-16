@@ -32,7 +32,6 @@ public class EmployeeController {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
-            // 入力チェック
             if (id != null && !id.matches("\\d*")) {
                 model.addAttribute("error", "社員IDは数字ではありません");
                 return "search";
@@ -96,5 +95,11 @@ public class EmployeeController {
             model.addAttribute("selectedIds", selectedIds);
             return "delete";
         }
+        
+        @PostMapping("/edit")
+        public String edid(@RequestParam(required = false) List<Long>selectedIds, Model model) {
+            model.addAttribute("selectedIds", selectedIds);
+            return "edit";
+        }    
     }
 }
