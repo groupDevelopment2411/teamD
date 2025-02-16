@@ -2,6 +2,7 @@ package com.example.demo.search;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,9 @@ public class EmployeeService {
         Integer max = (maxAge != null && !maxAge.isEmpty()) ? Integer.parseInt(maxAge) : null;
 
         return repository.findEmployees(employeeId, name, min, max, startDateFrom, startDateTo, endDateFrom, endDateTo);
+    }
+    public Employee getEmployeeById(Long id) {
+        Optional<Employee> employee = repository.findById(id);
+        return employee.orElse(null);
     }
 }
