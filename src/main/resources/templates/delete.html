@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>社員情報削除</title>
+</head>
+<body>
+    <h1>社員情報削除の確認</h1>
+
+    <form action="#" th:action="@{/delete}" method="post">
+        <div>
+            <p th:each="id : ${selectedIds}">
+                <input type="checkbox" th:id="'id_' + ${id}" th:name="selectedIds" th:value="${id}" /> 
+                <label th:for="'id_' + ${id}">社員ID: <span th:text="${id}"></span></label>
+            </p>
+        </div>
+        <button type="submit">削除</button>
+    </form>
+
+    <a href="/menu">メニューに戻る</a>
+</body>
+</html>
