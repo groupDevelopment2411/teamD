@@ -67,7 +67,7 @@
 	                        <input type="checkbox" name="selectedIds" th:value="${employee.id}" onclick="toggleDeleteButton()">
 	                    </td>
 	                    <td>
-							<a th:text="${employee.id}" >
+						    <a th:href="@{/update/{id}(id=${employee.id})}" th:text="${employee.id}"></a>
 						</td>
 	                    <td th:text="${employee.name}"></td>
 	                    <td th:text="${employee.age}"></td>
@@ -82,7 +82,7 @@
 	        </div>
 	    </form>
     </div>
-
+	
 	<script>
 		function toggleDeleteButton() {
 		    let checkboxes = document.querySelectorAll('input[name="selectedIds"]:checked');
@@ -90,5 +90,9 @@
 	    	deleteButton.disabled = checkboxes.length === 0;
 		}
 	</script>
+	<script th:if="${error != null}">
+	    alert("エラー: " + "[[${error}]]");
+	</script>
+
 </body>
 </html>
