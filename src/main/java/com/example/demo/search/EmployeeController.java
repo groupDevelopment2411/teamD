@@ -100,10 +100,9 @@ public class EmployeeController {
         }
         @GetMapping("/update/{id}")
         public String updateEmployee(@PathVariable Long id, Model model) {
-            // 更新対象の社員情報を取得
             Employee employee = service.getEmployeeById(id);
             model.addAttribute("employee", employee);
-            return "update";  // 更新用のテンプレートに遷移
+            return "update"; 
         }
     }
 }

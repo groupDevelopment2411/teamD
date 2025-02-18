@@ -1,12 +1,11 @@
 body {
     background-color: #f8f8f8;
     font-family: Arial, sans-serif;
-	font-size: 1rem;
 }
 
 .header-title {
     color: red;
-    font-size: 2rem;
+    font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -33,35 +32,30 @@ body {
 }
 
 .search-container {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 600px;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    border-radius: 8px;
 }
 
 .form-group {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
-	gap: 5px;
+    gap: 10px;
 }
 
 .form-group label {
-    width: 50px;
+    width: 80px;
     font-weight: bold;
-    text-align: center;
+    text-align: right;
 }
 
-input[type="text"] {
+input[type="text"], input[type="date"] {
     padding: 5px;
     border: 1px solid black;
-    width: 150px; 
-}
-
-#endDateFrom{
-	justify-content: flex-end;
+    width: 120px;
 }
 
 .button-group {
@@ -110,18 +104,13 @@ th {
     font-weight: bold;
 }
 
-.delete-button-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-}
-
 .delete-btn {
-    width: 120px;
-    padding: 10px;
-    background-color: yellow;
-    border: 2px solid black;
-    color: black;
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+	margin-top: 10px;
+    background-color: orange;
+    color: white;
+    padding:10px;
     cursor: pointer;
-	font-weight: bold;
 }
