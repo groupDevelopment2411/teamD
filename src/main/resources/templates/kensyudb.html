@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<table border="1">
+		<tr>
+			<th>ID</th>
+			<th>PASSWORD</th>
+		</tr>
+		<tr th:each="Loginentity: ${Loginentity}">
+			<td th:text="${Loginentity.id}"></td>
+			<td th:text="${Loginentity.password}"></td>
+		</tr>
+	</table>
+
+</body>
+</html>

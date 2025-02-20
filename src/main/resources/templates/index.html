@@ -13,7 +13,7 @@
 		<h1>社員情報管理システムログイン画面</h1>
 		
 			<label for="username">ID</label>
-			<input type="text" name="name" maxlength="200">
+			<input type="text" name="id" maxlength="200">
 			<label for="password">パスワード</label>
 			<input type="password" name="pass" maxlength="200">
 		
@@ -22,6 +22,8 @@
 		
 		</form>
 	</div>
-
+	<div style ="color:red;">
+		<p th:if"${errorMessage ! = null}" th:text="${errorMessage}"></p>
+	</div>
 </body>
 </html>
