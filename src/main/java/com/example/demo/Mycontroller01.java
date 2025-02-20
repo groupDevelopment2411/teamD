@@ -40,7 +40,7 @@ public class Mycontroller01 {
 	}
 	
 	@RequestMapping("/Collect")
-	public String collect() {
+	public String Collect() {
 		return "Collect";
 	}
 	
