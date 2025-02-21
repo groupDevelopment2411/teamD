@@ -2,12 +2,12 @@ package com.example.demo;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+ 
 
 @Controller
 public class Mycontroller01 {
@@ -31,20 +31,16 @@ public class Mycontroller01 {
 		
 	Loginentity user = Loginentitys.get(0);
 	if(user.getPassword().equals(password)) {
-		return "redirect:/Collect";
+		
+		return "index2";
 	}else {
 		m.addAttribute("errorMessage","IDかパスワードが間違っています。もう一度ご入力ください。");
 		return "index";
 	}
-		
+	
 	}
 	
-	@RequestMapping("/Collect")
-	public String Collect() {
-		return "Collect";
-	}
 	
-	@Autowired
 	private Loginservice service;
 	
 	@RequestMapping("/selectAll")
