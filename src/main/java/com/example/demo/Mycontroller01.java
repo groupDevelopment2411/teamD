@@ -18,8 +18,8 @@ public class Mycontroller01 {
 		return "index";
 	}
 	
-	@PostMapping("/Login")
-	public String Login(Model m,
+	@PostMapping("/Select")
+	public String Selct(Model m,
 		@RequestParam("id")String id ,
 		@RequestParam("pass")String password){
 		int numId =Integer.parseInt(id);
