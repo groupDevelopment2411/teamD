@@ -19,7 +19,11 @@ public class Mycontroller01 {
 	}
 	
 	@PostMapping("/Select")
+<<<<<<< HEAD
 	public String Select(Model m,
+=======
+	public String Selct(Model m,
+>>>>>>> future002
 		@RequestParam("id")String id ,
 		@RequestParam("pass")String password){
 		int numId =Integer.parseInt(id);
