@@ -20,7 +20,14 @@ public class EmployeeController {
         this.service = service;
     }
 
+    
     @GetMapping("/search")
+    public String showSearchPage() {
+        return "search"; 
+    }
+
+    
+    @PostMapping("/search")
     public String search(@RequestParam(required = false) String id,
                          @RequestParam(required = false) String name,
                          @RequestParam(required = false) String minAge,
