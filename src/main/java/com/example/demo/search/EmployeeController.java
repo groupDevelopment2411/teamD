@@ -8,6 +8,10 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+<<<<<<< HEAD
+=======
+import org.springframework.web.bind.annotation.PathVariable;
+>>>>>>> future003
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,7 +23,18 @@ public class EmployeeController {
         this.service = service;
     }
 
+<<<<<<< HEAD
     @GetMapping("/search")
+=======
+    
+    @GetMapping("/search")
+    public String showSearchPage() {
+        return "search"; 
+    }
+
+    
+    @PostMapping("/search")
+>>>>>>> future003
     public String search(@RequestParam(required = false) String id,
                          @RequestParam(required = false) String name,
                          @RequestParam(required = false) String minAge,
@@ -32,6 +47,10 @@ public class EmployeeController {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
+<<<<<<< HEAD
+=======
+            // 入力チェック
+>>>>>>> future003
             if (id != null && !id.matches("\\d*")) {
                 model.addAttribute("error", "社員IDは数字ではありません");
                 return "search";
@@ -55,6 +74,10 @@ public class EmployeeController {
             model.addAttribute("resultCount", employees.size());
         } catch (DateTimeParseException e) {
             model.addAttribute("error", "日付入力が誤っています");
+<<<<<<< HEAD
+=======
+            return "search";
+>>>>>>> future003
         }
         return "search";
     }
@@ -95,6 +118,7 @@ public class EmployeeController {
             model.addAttribute("selectedIds", selectedIds);
             return "delete";
         }
+<<<<<<< HEAD
         
         @PostMapping("/edit")
         public String edid(@RequestParam(required = false) List<Long>selectedIds, Model model) {
@@ -103,3 +127,14 @@ public class EmployeeController {
         }    
     }
 }
+=======
+        @GetMapping("/update/{id}")
+        public String updateEmployee(@PathVariable Long id, Model model) {
+            Employee employee = service.getEmployeeById(id);
+            model.addAttribute("employee", employee);
+            return "update"; 
+        }
+    }
+}
+
+>>>>>>> future003

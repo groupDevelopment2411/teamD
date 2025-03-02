@@ -40,4 +40,8 @@ public class Employee {
 
     public LocalDate getEndDate() { return endDate; }
     public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> future003
 }

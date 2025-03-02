@@ -1,12 +1,19 @@
 body {
     background-color: #f8f8f8;
     font-family: Arial, sans-serif;
+<<<<<<< HEAD
 	font-size: 1rem;
+=======
+>>>>>>> future003
 }
 
 .header-title {
     color: red;
+<<<<<<< HEAD
     font-size: 2rem;
+=======
+    font-size: 24px;
+>>>>>>> future003
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -33,18 +40,27 @@ body {
 }
 
 .search-container {
+<<<<<<< HEAD
     position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     width: 600px;
     padding: 10px;
+=======
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    border-radius: 8px;
+>>>>>>> future003
 }
 
 .form-group {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
+<<<<<<< HEAD
 	gap: 5px;
 }
 
@@ -62,6 +78,21 @@ input[type="text"] {
 
 #endDateFrom{
 	justify-content: flex-end;
+=======
+    gap: 10px;
+}
+
+.form-group label {
+    width: 80px;
+    font-weight: bold;
+    text-align: right;
+}
+
+input[type="text"], input[type="date"] {
+    padding: 5px;
+    border: 1px solid black;
+    width: 120px;
+>>>>>>> future003
 }
 
 .button-group {
@@ -110,6 +141,7 @@ th {
     font-weight: bold;
 }
 
+<<<<<<< HEAD
 .delete-button-container {
     display: flex;
     justify-content: flex-end;
@@ -124,4 +156,15 @@ th {
     color: black;
     cursor: pointer;
 	font-weight: bold;
+=======
+.delete-btn {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+	margin-top: 10px;
+    background-color: orange;
+    color: white;
+    padding:10px;
+    cursor: pointer;
+>>>>>>> future003
 }

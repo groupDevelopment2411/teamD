@@ -2,6 +2,10 @@ package com.example.demo.search;
 
 import java.time.LocalDate;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.Optional;
+>>>>>>> future003
 
 import org.springframework.stereotype.Service;
 
@@ -22,4 +26,11 @@ public class EmployeeService {
 
         return repository.findEmployees(employeeId, name, min, max, startDateFrom, startDateTo, endDateFrom, endDateTo);
     }
+<<<<<<< HEAD
+=======
+    public Employee getEmployeeById(Long id) {
+        Optional<Employee> employee = repository.findById(id);
+        return employee.orElse(null);
+    }
+>>>>>>> future003
 }
