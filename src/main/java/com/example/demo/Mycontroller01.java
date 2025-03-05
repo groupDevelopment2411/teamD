@@ -1,7 +1,9 @@
 package com.example.demo;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class Mycontroller01 {
-
 	
 	@RequestMapping("/toppage")
 	public String toppage() {
@@ -19,11 +20,7 @@ public class Mycontroller01 {
 	}
 	
 	@PostMapping("/Select")
-<<<<<<< HEAD
 	public String Select(Model m,
-=======
-	public String Selct(Model m,
->>>>>>> future002
 		@RequestParam("id")String id ,
 		@RequestParam("pass")String password){
 		int numId =Integer.parseInt(id);
@@ -35,24 +32,19 @@ public class Mycontroller01 {
 		
 	Loginentity user = Loginentitys.get(0);
 	if(user.getPassword().equals(password)) {
-		
+		m.addAttribute("userName",user.getName());
+		LocalDateTime currentTime = LocalDateTime.now();
+		m.addAttribute("currentTime",currentTime);
 		return "index2";
 	}else {
 		m.addAttribute("errorMessage","IDかパスワードが間違っています。もう一度ご入力ください。");
 		return "index";
 	}
-	
 	}
+
+
 	
-	
+	@Autowired
 	private Loginservice service;
-	
-	@RequestMapping("/selectAll")
-	public String getAllLoginentitys(Model m) {
-		List<Loginentity> Loginentitys =
-				service.selectAll();
-		m.addAttribute("Loginentity" ,Loginentitys);
-		return "kensyudb";
-	}
 	
 }

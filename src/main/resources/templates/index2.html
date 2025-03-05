@@ -1,26 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th ="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 
 	<div>
 	<title>トップメニュー</title>
 	<link rel="stylesheet" href="./Style2.css">
-    <h3 id="name">さん</h3>
+    <h3 id="name"><span th:text="${userName} ?: 'ゲスト'"></span>さん</h3>
     <h5 id="login"><span th:text="${currentTime}"></span></h5>
     <h2>トップメニュー</h2>
 	</div>
 </head>
 <body>
-	
-	
-	<div>
-		<tr th:each="Loginentity: ${Loginentity}">	
-			<div th:if="${Loginentity} == null">
-			IDかパスワードが間違っています。もう一度ご入力ください。
-			</div>
-	
-		</tr>
+
 			
 	     <ul class = block1>
 	          <li><a href="">社員情報検索</li></a>

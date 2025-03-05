@@ -8,17 +8,13 @@ import org.springframework.stereotype.Service;
 public class Loginservice {
 	@Autowired
 	private Loginmapper mapper;
-	
 		public List<Loginentity> selectAll(){
 		return mapper.selectAll();
 	}
 		
 	 public List<Loginentity> selectById(int id) {
-		
 		return mapper.selectById(id);
-	}
-	
-		
+	}	
 	}
 
 

@@ -1,18 +1,29 @@
 package com.example.demo;
 
 import java.time.LocalDateTime;
+import java.util.concurrent.atomic.AtomicReference;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@RequestMapping("/Select")
 public class Mycontroller2 {
-	@GetMapping("/Select")
-	public String Select(Model model) {
-		LocalDateTime currentTime = LocalDateTime.now();
-		model.addAttribute("currentTime",currentTime);
-		 return"index2";
-	}
 
+    private final AtomicReference<Loginentity> userLoginData = new AtomicReference<>();
+
+    @PostMapping("/Select")
+    public String Select(@RequestBody Loginentity user) {
+        user.setLoginTime(LocalDateTime.now()); // 
+        userLoginData.set(user);
+        return "User " + user.getName() + " logged in at " + user.getLoginTime();
+    }
+
+    @GetMapping("/Select")
+    public Loginentity LoginentityInfo() {
+        return userLoginData.get();
+    }
 }

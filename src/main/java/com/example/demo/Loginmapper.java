@@ -9,10 +9,6 @@ public interface Loginmapper {
 	@Select("SELECT * FROM teamd")
 	List<Loginentity> selectAll();
 	
-	@Select("SELECT id ,password  FROM teamd WHERE id = #{id}")
-	
-	List<Loginentity> selectById(int id);
-	
-	
-	
+	@Select("SELECT id ,name, password  FROM teamd WHERE id = #{id}")
+	List<Loginentity> selectById(int id);	
 }
