@@ -24,8 +24,8 @@ public class EntryController {
 		return "entryForm";
 	}
 	//社員情報登録(入力)
-	@PostMapping("/entry")
-	public String entryUser(
+	@PostMapping("/confirm")
+	public String userConfirm(
 			Model m,
 			RedirectAttributes r,
 			@RequestParam("name") String name,
@@ -67,12 +67,28 @@ public class EntryController {
 			r.addFlashAttribute("errors", errors);
 			return "redirect:/entryForm";
 		}
-		Entry entry = new Entry(name, numAge, password);
+		
+		m.addAttribute("name", name);
+		m.addAttribute("age", numAge);
+		m.addAttribute("passwordMasked", "●●●●●●●●●●");
+		m.addAttribute("password", password);
+		return "entryFormConfirm";
+	}
+	//社員情報登録(確認)
+	@PostMapping("/entry")
+	public String userEntry(
+			Model m,
+			@RequestParam("name") String name,
+			@RequestParam("age") int age,
+			@RequestParam("password") String password
+			) {
+		Entry entry = new Entry(name, age, password);
 		service.insert(entry);
+		
 		m.addAttribute("msg", "社員情報の登録が完了しました");
 		return "entryResult";
 	}
-	//社員情報登録(確認)
+
 	
 	
 }
