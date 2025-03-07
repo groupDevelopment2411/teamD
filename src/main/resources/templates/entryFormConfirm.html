@@ -14,10 +14,17 @@
 		
 		<input type="hidden" name="name" th:value="${name}" />
 		<input type="hidden" name="age" th:value="${age}" />
-		<input type="hidden" name="password" th:value="${password}" />
+		<input type="hidden" name="password" th:value="${password}"/>
+		<input type="hidden" name="passwordConfirm" th:value="${passwordConfirm}"/>
 		
 		<input type="submit" value="登録">
-		<input type="button" value="戻る">
+	</form>
+	<form action="/back" method="post">
+		<input type="hidden" name="name" th:value="${name}" />
+		<input type="hidden" name="age" th:value="${age}" />
+		<input type="hidden" name="password" th:value="${password}" />
+		<input type="hidden" name="passwordConfirm" th:value="${passwordConfirm}"/>
+		<input type="submit" value="戻る">
 	</form>
 </body>
 </html>
