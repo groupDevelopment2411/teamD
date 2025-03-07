@@ -7,10 +7,15 @@
 <body>
 	<!--表示専用-->
 	<form action="/entry" method="post">
-		社員名※<input type="text" name="name"><br>
-		年齢※<input type="text" name="age"><br>
-		パスワード<input type="password" name="password"><br>
-		パスワード(確認用)<input type="password"><br>
+		<p>社員名※<span th:text="${name}"></span></p>
+		<p>年齢※<span th:text="${age}"></span></p>
+		<p>パスワード<span th:text="${passwordMasked}"></span></p>
+		<p>パスワード(確認用)<span th:text="${passwordMasked}"></span></p>
+		
+		<input type="hidden" name="name" th:value="${name}" />
+		<input type="hidden" name="age" th:value="${age}" />
+		<input type="hidden" name="password" th:value="${password}" />
+		
 		<input type="submit" value="登録">
 		<input type="button" value="戻る">
 	</form>
