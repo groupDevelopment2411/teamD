@@ -72,6 +72,7 @@ public class EntryController {
 		m.addAttribute("age", numAge);
 		m.addAttribute("passwordMasked", "●●●●●●●●●●");
 		m.addAttribute("password", password);
+		m.addAttribute("passwordConfirm", passwordConfirm);
 		return "entryFormConfirm";
 	}
 	//社員情報登録(確認)
@@ -87,6 +88,22 @@ public class EntryController {
 		
 		m.addAttribute("msg", "社員情報の登録が完了しました");
 		return "entryResult";
+	}
+	//社員情報登録(確認)戻るボタンでentryFormに戻る
+	@PostMapping("/back")
+	public String backToEntryForm(
+			RedirectAttributes r,
+			@RequestParam("name") String name,
+			@RequestParam("age") String age,
+			@RequestParam("password") String password,
+			@RequestParam("passwordConfirm") String passwordConfirm
+			) {
+		r.addFlashAttribute("name", name);
+		r.addFlashAttribute("age", age);
+		r.addFlashAttribute("password", password);
+		r.addFlashAttribute("passwordConfirm", passwordConfirm);
+		
+		return "redirect:/entryForm";
 	}
 
 	
