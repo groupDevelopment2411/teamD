@@ -67,10 +67,12 @@ public class EntryController {
 			r.addFlashAttribute("errors", errors);
 			return "redirect:/entryForm";
 		}
+		//パスワードマスキング用変数
+		String passwordMasked = "●".repeat(password.length());
 		
 		m.addAttribute("name", name);
 		m.addAttribute("age", numAge);
-		m.addAttribute("passwordMasked", "●●●●●●●●●●");
+		m.addAttribute("passwordMasked", passwordMasked);
 		m.addAttribute("password", password);
 		m.addAttribute("passwordConfirm", passwordConfirm);
 		return "entryFormConfirm";
