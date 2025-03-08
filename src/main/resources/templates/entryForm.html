@@ -5,10 +5,11 @@
 <title>社員情報登録(入力)</title>
 </head>
 <body>
+	<!--エラーメッセージを表示-->
 	<div th:if="${errors}">
 		<p th:each="error : ${errors}" th:text="${error}"></p>
 	</div>
-	
+	<!--入力画面-->
 	<form action="/confirm" method="post">
 		社員名※<input type="text" name="name" th:value="${name}"><br>
 		年齢※<input type="text" name="age" th:value="${age}"><br>
