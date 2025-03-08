@@ -6,7 +6,13 @@
 </head>
 <body>
 	<p th:text="${msg}"></p>
-	<input type="button" value="メニュー">
-	<input type="button" value="検索へ">
+	<!-- メニュー画面への遷移 -->
+		<form action="/menu" method="get">
+			<input type="submit" value="メニュー">
+		</form>
+	<!-- 検索画面への遷移 -->
+		<form action="/search" method="get">
+			<input type="submit" value="検索へ">
+		</form>
 </body>
 </html>
