@@ -1,5 +1,16 @@
 package com.example.demo.Delete;
 
-public class DeleteService implements DeleteMapper{
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+//サービスクラス
+@Service
+public class DeleteService implements DeleteMapper{
+	//マッパークラス作成
+	@Autowired
+	private DeleteMapper mapper;
+	
+	public void delete(int id) {
+		mapper.delete(id);
+	}
 }
