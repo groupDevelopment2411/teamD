@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class DLService {
 	@Autowired
-	private Mapper mapper;
+	private DLMapper mapper;
 	public void update(Entity entity) {
 		mapper.update(entity);
 	}
