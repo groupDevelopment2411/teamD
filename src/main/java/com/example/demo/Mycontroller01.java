@@ -3,6 +3,8 @@ package com.example.demo;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class Mycontroller01 {
+	@Autowired
+	private Loginservice service;
+	private HttpSession session;
 	
 	@RequestMapping("/toppage")
 	public String toppage() {
@@ -41,10 +46,15 @@ public class Mycontroller01 {
 		return "index";
 	}
 	}
-
+	@RequestMapping("/Session")
+	public String Session(@RequestParam("id") String id , @RequestParam ("userName") String userName,@RequestParam("currentTime")LocalDateTime currentTime) {
+		this.session.setAttribute("id",id);
+		this.session.setAttribute("userName", userName);
+		this.session.setAttribute("currentTime" , currentTime);
+		return "Session01";
+	}
+	
 
 	
-	@Autowired
-	private Loginservice service;
 	
 }
