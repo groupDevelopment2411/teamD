@@ -7,14 +7,14 @@
      <title>社員情報更新</title>
 </head>
 <body>
-	<h3 id="name">さん</h3>
-	<h5 id="login"></h5>
+	<h3 id="name"><span th:text="${session.userName} ?: 'ゲスト'"></span>さん</h3>
+	<h5 id="login"><span th:text="${session.currentTime}"></span></h5>
 	<h2>社員情報更新（入力）</h2>
 		 
-	<form action="/updateForm" method = "post">
+	<form action="/update" method = "post">
      <ul class="id">
          <li>社員ID</li>
-         <li><input type="text "name ="id=" maxlength="200"></li> 
+         <li><input type="text "name ="id=" maxlength="200" th:value="${session.id}" readonly></li> 
      </ul>
      <ul class="name">
           <li>社員名<li>
@@ -22,7 +22,7 @@
      </ul>
      <ul class="age">
           <li>年齢</li>
-          <li><input type="text"name ="age=" maxlength="200"></li>
+          <li><input type="text"name ="age" maxlength="200"></li>
      </ul>
      <ul class="password">
           <li>パスワード</li>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class Mycontroller01 {
 	@Autowired
 	private Loginservice service;
+	@Autowired
 	private HttpSession session;
 	
 	@RequestMapping("/toppage")
@@ -37,24 +38,23 @@ public class Mycontroller01 {
 		
 	Loginentity user = Loginentitys.get(0);
 	if(user.getPassword().equals(password)) {
+		String userName = user.getName();
 		m.addAttribute("userName",user.getName());
 		LocalDateTime currentTime = LocalDateTime.now();
 		m.addAttribute("currentTime",currentTime);
+			this.session.setAttribute("id",id);
+			this.session.setAttribute("userName",userName);
+			this.session.setAttribute("currentTime" , currentTime);
 		return "index2";
 	}else {
 		m.addAttribute("errorMessage","IDかパスワードが間違っています。もう一度ご入力ください。");
 		return "index";
 	}
 	}
-	@RequestMapping("/Session")
-	public String Session(@RequestParam("id") String id , @RequestParam ("userName") String userName,@RequestParam("currentTime")LocalDateTime currentTime) {
-		this.session.setAttribute("id",id);
-		this.session.setAttribute("userName", userName);
-		this.session.setAttribute("currentTime" , currentTime);
-		return "Session01";
+	
 	}
 	
 
 	
 	
-}
+
