@@ -6,8 +6,12 @@
 </head>
 <body>
 	<p th:text="${msg}"></p>
-	<form action="" method="post">
+	<!-- メニュー画面への遷移 -->
+	<form action="/menu" method="get">
 		<input type="submit" value="メニュー">
+	</form>
+	<!-- 検索画面への遷移 -->
+	<form action="/search" method="get">
 		<input type="submit" value="検索へ">
 	</form>
 </body>
