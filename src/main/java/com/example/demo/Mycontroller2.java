@@ -20,6 +20,7 @@ public class Mycontroller2 {
         user.setLoginTime(LocalDateTime.now()); // 
         userLoginData.set(user);
         return "User " + user.getName() + " logged in at " + user.getLoginTime();
+        
     }
 
     @GetMapping("/Select")

@@ -42,7 +42,7 @@ public class Mycontroller01 {
 		m.addAttribute("userName",user.getName());
 		LocalDateTime currentTime = LocalDateTime.now();
 		m.addAttribute("currentTime",currentTime);
-			this.session.setAttribute("id",id);
+			this.session.setAttribute("id",user.getId());
 			this.session.setAttribute("userName",userName);
 			this.session.setAttribute("currentTime" , currentTime);
 		return "index2";

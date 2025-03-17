@@ -7,37 +7,37 @@
      <link rel="stylesheet" href="./Style4.css">
 </head>
 <body>
-	<h3 id="name"><span th:text="${session.userName} ?: 'ゲスト'"></span>さん</h3>
+	<h3 id="name"><span th:text="${session.userName} != null ? session.userName : 'ゲスト'"></span>さん</h3>
 	<h5 id="login"><span th:text="${session.currentTime}"></span></h5>
 	<h2>社員情報更新（入力）</h2>
 	
 	<ul class="id">
 	       <li>社員ID</li>
-	       <li><input type="text"  name ="id" maxlength="200" th:value="${session.id}" readonly></li> 
+	       <li><input type="text"  name ="id"  th:value="${session.id}" maxlength="200" readonly></li> 
 	   </ul>
 	   <ul class="name">
-	        <li>社員名<li>
-	        <li><input type="text" name="name" maxlength="200"></li>
+	        <li>社員名<span class="error-message">*</span></li>
+	        <li><input type="text" name="name" th:value="${entity.name}" maxlength="200" required></li>
 	   </ul>
 	   <ul class="age">
-	        <li>年齢</li>
-	        <li><input type="text" name ="age" maxlength="200"></li>
+	        <li>年齢<span class="error-message">*</span></li>
+	        <li><input type="text" name ="age"  th:value="${entity.age}" maxlength="200" required></li>
 	   </ul>
 	   <ul class="password">
-	        <li>パスワード</li>
-	        <li><input type="password" name="password"  maxlength="200"></li>
+	        <li>パスワード<span class="error-message">*</span></li>
+	        <li><input type="password" name="password" th:value="${entity.password}" maxlength="200" required></li>
 	   </ul>
 	   <ul class="check">
-	        <li>パスワード確認</li>
-	        <li><input type="password" name="check" maxlength="200"></li >
+	        <li>パスワード確認<span class="error-message">*</span></li>
+	        <li><input type="password" name="check" th:value="${entity.password}" maxlength="200" required></li >
 	   </ul>
 	   <ul class="start">
-	        <li>開始日</li>
-	        <li><input type="text" name="start" maxlength="200"></li>
+	        <li>開始日<span class="error-message">*</span></li>
+	        <li><input type="date" name="start"  th:value="${#dates.format(entity.start, 'yyyy-MM-dd')}" maxlength="200" required></li>
 	   </ul>
 	   <ul class="end">
-	        <li>終了日</li>
-	        <li><input type="text" name="end" maxlength="200"></li>
+	        <li>終了日<span class="error-message">*</span></li>
+	        <li><input type="date" name="end"  th:value="${#dates.format(entity.end, 'yyyy-MM-dd')}" maxlength="200"required></li>
 	   </ul>
 	   <div class="word">
 	   <p>こちらで更新します。よろしいですか？</p>

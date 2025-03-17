@@ -5,6 +5,9 @@ h2{
      border-bottom: 3px solid black;
      margin: 10px;
 }
+.Session{
+	text-align: right;
+}
 
 ul{
      font-size: 20px;
@@ -94,7 +97,7 @@ ul.end{
  }
  
 
- input{
+input{
      width: 200px;
      padding: 5px;
      font-size: 16px;
@@ -102,5 +105,11 @@ ul.end{
 
 p{
      border-top: 3px solid black;
+}
+input[name =id]{
+	background-color: darkgrey;
+}
+.error-message{
+	color: red;
 }
  

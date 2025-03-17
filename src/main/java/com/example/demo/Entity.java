@@ -1,20 +1,27 @@
 package com.example.demo;
 
+import java.sql.Date;
+
+
+
 public class Entity {
 	private int id;
 	private String name;
 	private int age;
 	private String password;
-	private String start;
-	private String end;
+	private Date start;
+	private Date end;
 	
-	public Entity(int id, String name, int age, String password, String start, String end) {
+	public Entity(int id, String name, int age, String password, Date start, Date end) {
 		this.id = id;
 		this.name =name;
 		this.age=age;
 		this.password =password;
 		this.start =start;
 		this.end =end;
+		
+		
+		
 	}
 
 	public int getId() {
@@ -49,22 +56,20 @@ public class Entity {
 		this.password = password;
 	}
 
-	public String getStart() {
+	public Date getStart() {
 		return start;
 	}
 
-	public void setStart(String start) {
+	public void setStart(Date start) {
 		this.start = start;
 	}
 
-	public String getEnd() {
+	public Date getEnd() {
 		return end;
 	}
 
-	public void setEnd(String end) {
+	public void setEnd(Date end) {
 		this.end = end;
 	}
-	
 
-	
 }

@@ -1,19 +1,21 @@
 <!DOCTYPE html>
+<html lang="ja">
 <html xmlns:th ="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-
-	<div>
+	<meta charset="UTF-8">
 	<title>トップメニュー</title>
-	<link rel="stylesheet" href="./Style2.css">
-    <h3 id="name"><span th:text="${userName} ?: 'ゲスト'"></span>さん</h3>
-    <h5 id="login"><span th:text="${currentTime}"></span></h5>
-    <h2>トップメニュー</h2>
-	</div>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th: href="./Style2.css"/>
 </head>
-<body>
 
-			
+<body>
+		<div class ="Session">
+			<h3 id="name"><span th:text="${session.userName} ?: 'ゲスト'"></span>さん</h3>
+			<h5 id="login"><span th:text="${session.currentTime}"></span></h5>
+		</div>
+		
+		<h2>トップメニュー</h2>
+	
 	     <ul class = block1>
 	          <li><a href="">社員情報検索</li></a>
 	          <li><a href="">社員情報削除</li></a>
@@ -23,8 +25,5 @@
 	          <li><a href="http://localhost:8080/updateForm">社員情報更新</li></a>
 	     </ul>
 	     <small>Teamd&copy; 2025</small>
-	</div>
-	
-
 </body>
 </html>

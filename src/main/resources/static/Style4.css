@@ -6,6 +6,13 @@ h2{
      margin: 10px;
 }
 
+#name{
+	text-align: right
+}
+#login{
+	text-align: right;
+}
+
 ul{
      font-size: 20px;
      font-weight: 500;
@@ -106,5 +113,8 @@ p{
      
      border-bottom: 3px solid black;
     
+}
+.error-message{
+	text-decoration: red;
 }
  

@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 public class DLService {
 	@Autowired
 	private DLMapper mapper;
+	public Entity getById(int id) {
+		return mapper.getById(id);
+	}
+	
 	public void update(Entity entity) {
 		mapper.update(entity);
 	}
