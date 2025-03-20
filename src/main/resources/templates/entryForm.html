@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>社員情報登録(入力)</title>
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 	<!--エラーメッセージを表示-->
@@ -11,10 +12,14 @@
 	</div>
 	<!--入力画面-->
 	<form action="/confirm" method="post">
-		社員名※<input type="text" name="name" th:value="${name}"><br>
-		年齢※<input type="text" name="age" th:value="${age}"><br>
-		パスワード<input type="password" name="password" th:value="${password}"><br>
-		パスワード(確認用)<input type="password" name="passwordConfirm" th:value="${passwordConfirm}"><br>
+		<label for="name">社員名※</label>
+		<input type="text" name="name" id="name" th:value="${name}"><br>
+		<label for="age">年齢※</label>
+		<input type="text" name="age" id="age" th:value="${age}"><br>
+		<label for="password">パスワード</label>
+		<input type="password" name="password" id="password" th:value="${password}"><br>
+		<label for="passwordConfirm">パスワード(確認用)</label>
+		<input type="password" name="passwordConfirm" id="passwordConfirm" th:value="${passwordConfirm}"><br>
 		<input type="submit" value="確認">
 		<input type="button" value="戻る">
 	</form>
