@@ -2,9 +2,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>社員情報登録(確認用)</title>
+<title>社員情報登録(確認)</title>
 </head>
 <body>
+	<header>
+		<p>社員情報登録(確認)</p>
+		<p>ログイン情報表示(名前と日付と時間)</p>
+		<hr>
+	</header>
 	<!--表示専用-->
 	<form action="/entry" method="post">
 		<p>社員名※<span th:text="${name}"></span></p>
@@ -16,7 +21,7 @@
 		<input type="hidden" name="age" th:value="${age}" />
 		<input type="hidden" name="password" th:value="${password}"/>
 		<input type="hidden" name="passwordConfirm" th:value="${passwordConfirm}"/>
-		
+		<hr>
 		<input type="submit" value="登録">
 	</form>
 	<!--entryFormに戻る際にデータも保持-->
@@ -27,5 +32,8 @@
 		<input type="hidden" name="passwordConfirm" th:value="${passwordConfirm}"/>
 		<input type="submit" value="戻る">
 	</form>
+	<footer>
+		<p>Copyright © 2025 JavaStudy teamD</p>
+	</footer>
 </body>
 </html>

@@ -5,7 +5,13 @@
 <title>社員情報登録(完了)</title>
 </head>
 <body>
+	<header>
+		<p>社員情報登録(完了)</p>
+		<p>ログイン情報表示(名前と日付と時間)</p>
+		<hr>
+	</header>
 	<p th:text="${msg}"></p>
+	<hr>
 	<!-- メニュー画面への遷移 -->
 		<form action="/menu" method="get">
 			<input type="submit" value="メニュー">
@@ -14,5 +20,8 @@
 		<form action="/search" method="get">
 			<input type="submit" value="検索へ">
 		</form>
+	<footer>
+		<p>Copyright © 2025 JavaStudy teamD</p>
+	</footer>
 </body>
 </html>

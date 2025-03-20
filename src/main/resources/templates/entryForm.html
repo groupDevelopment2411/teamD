@@ -3,9 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>社員情報登録(入力)</title>
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/entry.css">
 </head>
 <body>
+	<header>
+		<p>社員情報登録(入力)</p>
+		<p>ログイン情報表示(名前と日付と時間)</p>
+		<hr>
+	</header>
 	<!--エラーメッセージを表示-->
 	<div th:if="${errors}">
 		<p th:each="error : ${errors}" th:text="${error}"></p>
@@ -20,9 +25,12 @@
 		<input type="password" name="password" id="password" th:value="${password}"><br>
 		<label for="passwordConfirm">パスワード(確認用)</label>
 		<input type="password" name="passwordConfirm" id="passwordConfirm" th:value="${passwordConfirm}"><br>
+		<hr>
 		<input type="submit" value="確認">
 		<input type="button" value="戻る">
 	</form>
-	
+	<footer>
+		<p>Copyright © 2025 JavaStudy teamD</p>
+	</footer>
 </body>
 </html>
