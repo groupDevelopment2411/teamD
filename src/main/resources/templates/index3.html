@@ -13,7 +13,6 @@
 	</div>
 	<h2>社員情報更新（入力）</h2>
 		 
-	<form action="/update" method = "post" onsubmit ="return validateForm()">
      <ul class="id">
          <li>社員ID</li>
          <li><input type="text "name ="id" th:value="${session.id}" maxlength="200"  readonly ></li> 
@@ -51,10 +50,17 @@
 
      <p></p>
      <ul class="button-group">
-          <li><input type="submit" value="確認"></li>
+          <li><input type="submit" value="確認" onclick="submitForm('/update')"></li>
           <li><input type="submit" value="削除"></li>
-          <li><input type="submit" value="戻る"></li>
+          <li><input type="submit" value="戻る" onclick="submitForm('/Select')"></li>
      </ul>
+	 
+	 <script>
+	     function submitForm(action) {
+	         document.getElementById("updateForm").action = action;
+	         document.getElementById("updateForm").submit();
+	     }
+	 </script>
 	 
 	 </form> 
 </body>

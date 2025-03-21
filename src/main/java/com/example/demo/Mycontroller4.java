@@ -83,8 +83,17 @@ public class Mycontroller4 {
 		m.addAttribute("errorMessage","パスワードが違っています。もう一度ご入力ください。");
 		return "index3";
 	}
-
-	}
-	
 }
+
+@PostMapping("/Select")
+	public String Select(){
+		return "index2";
+	}
+@GetMapping("/update")
+	public String update() {
+	return "index4";
+}
+
+}
+
 

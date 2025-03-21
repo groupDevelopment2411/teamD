@@ -1,14 +1,10 @@
 @charset "UTF-8";
-
-.Session{
-	text-align: right;
-}
-
 h2{
      color: red;
      border-bottom: 3px solid black;
      margin: 10px;
 }
+
 ul{
      padding: 50px;
      width: 50%;

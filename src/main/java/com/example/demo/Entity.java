@@ -20,8 +20,6 @@ public class Entity {
 		this.start =start;
 		this.end =end;
 		
-		
-		
 	}
 
 	public int getId() {
@@ -71,5 +69,5 @@ public class Entity {
 	public void setEnd(Date end) {
 		this.end = end;
 	}
-
 }
+	
