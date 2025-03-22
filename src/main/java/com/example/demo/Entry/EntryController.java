@@ -69,7 +69,7 @@ public class EntryController {
 			return "redirect:/entryForm";
 		}
 		//パスワードマスキング用変数
-		String passwordMasked = "●".repeat(password.length());
+		String passwordMasked = "⚫︎".repeat(password.length());
 		
 		m.addAttribute("name", name);
 		m.addAttribute("age", numAge);
