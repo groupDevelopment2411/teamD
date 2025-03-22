@@ -1,39 +1,66 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>社員情報登録(確認)</title>
+	<meta charset="UTF-8">
+	<title>社員情報登録(確認)</title>
+	<link rel="stylesheet" href="/css/entry.css">
 </head>
+
 <body>
-	<header>
-		<p>社員情報登録(確認)</p>
-		<p>ログイン情報表示(名前と日付と時間)</p>
-		<hr>
-	</header>
-	<!--表示専用-->
-	<form action="/entry" method="post">
-		<p>社員名※<span th:text="${name}"></span></p>
-		<p>年齢※<span th:text="${age}"></span></p>
-		<p>パスワード<span th:text="${passwordMasked}"></span></p>
-		<p>パスワード(確認用)<span th:text="${passwordMasked}"></span></p>
-	<!--画面に表示せず登録ボタンで入力情報を送信-->	
-		<input type="hidden" name="name" th:value="${name}" />
-		<input type="hidden" name="age" th:value="${age}" />
-		<input type="hidden" name="password" th:value="${password}"/>
-		<input type="hidden" name="passwordConfirm" th:value="${passwordConfirm}"/>
-		<hr>
-		<input type="submit" value="登録">
-	</form>
-	<!--entryFormに戻る際にデータも保持-->
-	<form action="/back" method="post">
-		<input type="hidden" name="name" th:value="${name}" />
-		<input type="hidden" name="age" th:value="${age}" />
-		<input type="hidden" name="password" th:value="${password}" />
-		<input type="hidden" name="passwordConfirm" th:value="${passwordConfirm}"/>
-		<input type="submit" value="戻る">
-	</form>
-	<footer>
-		<p>Copyright © 2025 JavaStudy teamD</p>
-	</footer>
+	<div class="container">
+		<!--ヘッダー-->
+		<header class="header">
+			<p class="header-title">社員情報登録(確認)</p>
+			<p class="header-login">○○ ○○さん<br>0000/00/00 00:00</p>
+		</header>
+		<hr class="header-hr">
+		<!--社員情報登録(確認)-->
+		<form action="/entry" method="post">
+			<div class="form-group">
+				<p class="name">社員名</p>
+				<span th:text="${name}"></span>
+			</div>
+			<div class="form-group">
+				<p class="age">年齢</p>
+				<span th:text="${age}"></span>
+			</div>
+			<div class="form-group">
+				<p>パスワード</p>
+				<span th:text="${passwordMasked}"></span>
+			</div>
+			<div class="form-group">
+				<p>パスワード確</p>
+				<span th:text="${passwordMasked}"></span>
+			</div>
+			<!--画面に表示せず登録ボタンで入力情報を送信-->
+			<input type="hidden" name="name" th:value="${name}" />
+			<input type="hidden" name="age" th:value="${age}" />
+			<input type="hidden" name="password" th:value="${password}" />
+			<input type="hidden" name="passwordConfirm" th:value="${passwordConfirm}" />
+			<p class="confirm-msg">こちらで登録します。 よろしいですか？</p>
+			<hr class="footer-hr2">
+			<!--登録ボタン-->
+			<div class="button-group1">
+				<input type="submit" value="登録" class="entry-button">
+			</div>
+		</form>
+		<!--entryFormに戻る際にデータも保持-->
+		<form action="/back" method="post">
+			<input type="hidden" name="name" th:value="${name}" />
+			<input type="hidden" name="age" th:value="${age}" />
+			<input type="hidden" name="password" th:value="${password}" />
+			<input type="hidden" name="passwordConfirm" th:value="${passwordConfirm}" />
+			<!--戻るボタン-->
+			<div class="button-group2">
+				<input type="submit" value="戻る" class="return-button">
+			</div>
+		</form>
+		<!--フッター-->
+		<footer>
+			<p>Copyright © 2025 JavaStudy teamD</p>
+		</footer>
+	</div>
 </body>
+
 </html>
