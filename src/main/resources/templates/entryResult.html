@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>社員情報登録(完了)</title>
+	<meta charset="UTF-8">
+	<title>社員情報登録(完了)</title>
+	<link rel="stylesheet" href="/css/entry.css">
 </head>
+
 <body>
-	<header>
-		<p>社員情報登録(完了)</p>
-		<p>ログイン情報表示(名前と日付と時間)</p>
-		<hr>
-	</header>
-	<p th:text="${msg}"></p>
-	<hr>
-	<!-- メニュー画面への遷移 -->
-		<form action="/menu" method="get">
-			<input type="submit" value="メニュー">
-		</form>
-	<!-- 検索画面への遷移 -->
-		<form action="/search" method="get">
-			<input type="submit" value="検索へ">
-		</form>
-	<footer>
-		<p>Copyright © 2025 JavaStudy teamD</p>
-	</footer>
+	<div class="container">
+		<!--ヘッダー-->
+		<header class="header">
+			<p class="header-title">社員情報登録(完了)</p>
+			<p class="header-login">○○ ○○さん<br>0000/00/00 00:00</p>
+		</header>
+		<hr class="header-hr">
+		<p th:text="${msg}" class="result-msg"></p>
+		<hr class="footer-hr">
+		<!-- メニュー画面への遷移 -->
+		<div class="button-group1">
+			<form action="/menu" method="get">
+				<input type="submit" value="メニュー" class="menu-button">
+			</form>
+		</div>
+		<!-- 検索画面への遷移 -->
+		<div class="button-group2">
+			<form action="/search" method="get">
+				<input type="submit" value="検索へ" class="search-button">
+			</form>
+		</div>
+		<!--フッター-->
+		<footer>
+			<p>Copyright © 2025 JavaStudy teamD</p>
+		</footer>
+	</div>
 </body>
+
 </html>
