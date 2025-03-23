@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>社員情報削除(確認)</title>
-<link rel="stylesheet" href="/css/delete.css">
+	<meta charset="UTF-8">
+	<title>社員情報削除(確認)</title>
+	<link rel="stylesheet" href="/css/delete.css">
 </head>
+
 <body>
 	<div class="container">
-			<!--ヘッダー-->
-			<header class="header">
-				<p class="header-title">社員情報削除(確認)</p>
-				<p class="header-login">○○ ○○さん<br>0000/00/00 00:00</p>
-			</header>
-			<hr class="header-hr">
-	<form action="/delete" method="post">
-		<div class="form-group">
-		<p class="name">社員ID</p>
-		<input type="text" name="id">
-		</div>
-		<div class="button-group1">
-		<input type="submit" value="削除">
-		</div>
-		<div class="button-group2">
-			<form action="previous" method="post">
-		<input type="submit" value="戻る">
-		</form>
-		</div>
+		<!--ヘッダー-->
+		<header class="header">
+			<p class="header-title">社員情報削除(確認)</p>
+			<p class="header-login">○○ ○○さん<br>0000/00/00 00:00</p>
+		</header>
+		<hr class="header-hr">
+		<!--社員情報削除(確認)-->
+		<form action="/delete" method="post">
+			<div class="form-group">
+				<p class="name">社員ID</p>
+				<input type="text" name="id">
+			</div>
+			<p class="confirm-msg">こちらを削除します。 よろしいですか？</p>
+			<hr class="footer-hr2">
+			<!--削除ボタン-->
+			<div class="button-group1">
+				<input type="submit" value="削除" class="delete-button">
+			</div>
+			<form action="/previous" method="post">
+				<!--戻るボタン-->
+				<div class="button-group2">
+					<input type="submit" value="戻る" class="return-button">
+				</div>
+			</form>
+	</div>
 	</form>
 	<!--フッター-->
-			<footer>
-				<p>Copyright © 2025 JavaStudy teamD</p>
-			</footer>
+	<footer>
+		<p>Copyright © 2025 JavaStudy teamD</p>
+	</footer>
 	</div>
 </body>
+
 </html>
