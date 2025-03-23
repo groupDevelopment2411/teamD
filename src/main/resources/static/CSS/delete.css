@@ -37,11 +37,6 @@
 	margin-bottom: 30px;
 }
 
-.name::after, .age::after {
-	content: "＊";
-	color: red;
-}
-
 .button-group1,.buuton-group2 {
 	float: left;
 	width: 100px;
@@ -56,14 +51,6 @@
 	margin-left: 320px;
 }
 
-.return-button {
-	background-color: white;
-	border: 1px solid;
-	padding: 8px 20px;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
 .footer-hr {
 	margin: 60px 0 20px 0;
 }
@@ -75,8 +62,9 @@ footer {
 	font-size: 10px;
 }
 
-/*entryForm.html*/
-.form-group label {
+/*deleteForm.html*/
+.form-group p {
+	margin: 0;
 	width: 120px;
 	text-align: left;
 	font-weight: bold;
@@ -91,7 +79,7 @@ footer {
 	font-size: 18px;
 }
 
-.confirm-button {
+.delete-button {
 	background-color: orange;
 	border: 1px solid;
 	padding: 8px 20px;
@@ -99,27 +87,8 @@ footer {
 	cursor: pointer;
 }
 
-/*entryFormConfirm.html*/
-.form-group p {
-	margin: 0;
-	width: 120px;
-	text-align: left;
-	font-weight: bold;
-	padding-left: 115px;
-}
-
-.form-group span {
-	width: 200px;
-	height: 30px;
-	padding: 5px;
-	border: 1px solid #000;
-	font-size: 18px;
-	display: flex; 
-	align-items: center;
-}
-
-.entry-button {
-	background-color: orange;
+.return-button {
+	background-color: white;
 	border: 1px solid;
 	padding: 8px 20px;
 	border-radius: 5px;
@@ -135,7 +104,7 @@ footer {
 	margin: 6px 0 20px 0;
 }
 
-/*entryResult.html*/
+/*deleteResult.html*/
 .result-msg {
 	height: 258px;
 	display: flex;
