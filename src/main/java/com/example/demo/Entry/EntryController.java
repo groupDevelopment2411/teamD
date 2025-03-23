@@ -3,6 +3,9 @@ package com.example.demo.Entry;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 //コントローラークラス
 @Controller
@@ -21,7 +25,11 @@ public class EntryController {
 	
 	//社員情報入力フォーム
 	@RequestMapping("/entryForm")
-	public String entryForm() {
+	public String entryForm(HttpSession session, HttpServletRequest request) {
+		String referer = request.getHeader("Referer");
+	    if (referer != null) {
+	        session.setAttribute("previousUrl", referer);
+	    }
 		return "entryForm";
 	}
 	//社員情報登録(入力)
@@ -80,7 +88,16 @@ public class EntryController {
 	}
 	
 	//社員情報登録(入力)の戻るボタンでアクセスのあった画面に遷移
-	
+	@PostMapping("/previous")
+	public String previous(HttpSession session) {
+	    // 保存されているURLを取得
+	    String previousUrl = (String) session.getAttribute("previousUrl");
+	    // URLが存在しない場合はデフォルトでメニュー画面へ
+	    if (previousUrl == null || previousUrl.isEmpty()) {
+	        return "redirect:/menu";
+	    }
+	    return "redirect:" + previousUrl;
+	}
 	
 	//社員情報登録(確認)
 	@PostMapping("/entry")
