@@ -32,8 +32,8 @@
 }
 
 .form-group {
+	height: 258px;
 	display: flex;
-	align-items: center;
 	margin-bottom: 30px;
 }
 
@@ -58,7 +58,7 @@
 footer {
 	position: absolute; 
 	top: 94%;
-	left: 71%;
+	left: 79%;
 	font-size: 10px;
 }
 
@@ -68,6 +68,7 @@ footer {
 	width: 120px;
 	text-align: left;
 	font-weight: bold;
+	padding-top: 10px;
 	padding-left: 115px;
 }
 
