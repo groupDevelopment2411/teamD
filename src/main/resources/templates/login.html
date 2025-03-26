@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>ログイン</h2>
+	    <form action="/login" method="post">
+	        <label>ユーザー名: <input type="text" name="name"></label><br>
+	        <label>パスワード: <input type="password" name="password"></label><br>
+	        <input type="submit" value="ログイン">
+	    </form>
+	    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+		<a href="/logout">ログアウト</a>
+</body>
+</html>
