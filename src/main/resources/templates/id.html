@@ -15,6 +15,9 @@
 			<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
 		</p>
 	</header>
+	<div th:if="${error}" style="color: red;">
+	    <p th:text="${error}"></p>
+	</div>
 	<form action="/deleteForm" method="post">
 		<table border="1">
 			<tr>
