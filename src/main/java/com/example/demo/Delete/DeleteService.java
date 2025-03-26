@@ -1,5 +1,7 @@
 package com.example.demo.Delete;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,7 @@ public class DeleteService implements DeleteMapper{
 	@Autowired
 	private DeleteMapper mapper;
 	
-	public void delete(int id) {
-		mapper.delete(id);
-	}
+	public void delete(List<Integer> ids) {
+        mapper.delete(ids); 
+    }
 }

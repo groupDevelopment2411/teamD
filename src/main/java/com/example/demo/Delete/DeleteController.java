@@ -1,5 +1,8 @@
 package com.example.demo.Delete;
 
+import java.util.Arrays;
+import java.util.List;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -43,9 +46,11 @@ public class DeleteController {
 	@PostMapping("/delete")
 	public String delete(
 			Model m,
-			@RequestParam("id") String id) {
-		int numId = Integer.parseInt(id);
-		service.delete(numId);
+			@RequestParam("ids") String idsStr) {
+		List<Integer> ids = Arrays.stream(idsStr.split(","))
+                .map(Integer::parseInt)
+                .toList();
+		service.delete(ids);
 		m.addAttribute("msg", "社員情報の削除が完了しました");
 		return "deleteResult";
 	}
