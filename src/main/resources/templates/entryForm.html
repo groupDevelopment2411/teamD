@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>社員情報登録(入力)</title>
-<link rel="stylesheet" href="/css/entry.css">
+	<meta charset="UTF-8">
+	<title>社員情報登録(入力)</title>
+	<link rel="stylesheet" href="/css/entry.css">
 </head>
+
 <body>
 	<!--全体-->
 	<div class="container">
-	<!--ヘッダー-->
+		<!--ヘッダー-->
 		<header class="header">
 			<p class="header-title">社員情報登録(入力)</p>
-			<p class="header-login">○○ ○○さん<br>0000/00/00 00:00</p>
+			<p class="header-login" th:if="${session.loginUser != null}">
+				<span th:text="${session.loginUser.name}"></span> さん<br>
+				<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
+			</p>
 		</header>
 		<hr class="header-hr">
-	<!--エラーメッセージ-->
+		<!--エラーメッセージ-->
 		<div th:if="${errors}">
 			<script th:inline="javascript">
 				/*<![CDATA[*/
@@ -25,7 +30,7 @@
 				/*]]>*/
 			</script>
 		</div>
-	<!--社員情報登録フォーム-->
+		<!--社員情報登録フォーム-->
 		<form action="/confirm" method="post">
 			<div class="form-group">
 				<label for="name" class="name">社員名</label>
@@ -44,13 +49,13 @@
 				<input type="password" name="passwordConfirm" id="passwordConfirm" th:value="${passwordConfirm}">
 			</div>
 			<hr class="footer-hr">
-		<!--確認ボタン-->
+			<!--確認ボタン-->
 			<div class="button-group1">
 				<input type="submit" value="確認" class="confirm-button">
 			</div>
 		</form>
 		<form action="/previous" method="post">
-		<!--戻るボタン-->
+			<!--戻るボタン-->
 			<div class="button-group2">
 				<input type="submit" value="戻る" class="return-button">
 			</div>
@@ -61,4 +66,5 @@
 		</footer>
 	</div>
 </body>
+
 </html>

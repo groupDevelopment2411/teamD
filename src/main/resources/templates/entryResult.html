@@ -12,7 +12,10 @@
 		<!--ヘッダー-->
 		<header class="header">
 			<p class="header-title">社員情報登録(完了)</p>
-			<p class="header-login">○○ ○○さん<br>0000/00/00 00:00</p>
+			<p class="header-login" th:if="${session.loginUser != null}">
+				<span th:text="${session.loginUser.name}"></span> さん<br>
+				<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
+			</p>
 		</header>
 		<hr class="header-hr">
 		<p th:text="${msg}" class="result-msg"></p>
