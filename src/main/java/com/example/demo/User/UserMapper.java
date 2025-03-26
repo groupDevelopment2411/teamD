@@ -8,6 +8,11 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface UserMapper {
 	
-	@Select("select * from users where id = #{id}")
-	List<User> selectById(int id);
+	@Select("<script>"
+            + "SELECT * FROM users WHERE id IN "
+            + "<foreach item='id' collection='ids' open='(' separator=',' close=')'>"
+            + "#{id}"
+            + "</foreach>"
+            + "</script>")
+	List<User> selectByIds(List<Integer> ids);
 }

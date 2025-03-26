@@ -10,7 +10,7 @@ public class UserService implements UserMapper {
 	@Autowired
 	private UserMapper mapper;
 	
-	public List<User> selectById(int id){
-		return mapper.selectById(id);
+	public List<User> selectByIds(List<Integer> ids){
+		return mapper.selectByIds(ids);
 	}
 }
