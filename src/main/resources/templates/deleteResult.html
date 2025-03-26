@@ -12,7 +12,10 @@
 		<!--ヘッダー-->
 		<header class="header">
 			<p class="header-title">社員情報削除(完了)</p>
-			<p class="header-login">○○ ○○さん<br>0000/00/00 00:00</p>
+			<p class="header-login" th:if="${session.loginUser != null}">
+				<span th:text="${session.loginUser.name}"></span> さん<br>
+				<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
+			</p>
 		</header>
 		<hr class="header-hr">
 		<p th:text="${msg}" class="result-msg"></p>
@@ -34,6 +37,7 @@
 			<p>Copyright © 2025 JavaStudy teamD</p>
 		</footer>
 	</div>
+	<a href="/logout">ログアウト</a>
 </body>
 
 </html>

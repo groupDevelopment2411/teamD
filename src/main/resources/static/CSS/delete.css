@@ -37,7 +37,7 @@
 	margin-bottom: 30px;
 }
 
-.button-group1,.buuton-group2 {
+.button-group1{
 	float: left;
 	width: 100px;
 	text-align: center;
@@ -66,6 +66,15 @@ footer {
 	font-weight: bold;
 	padding-top: 10px;
 	padding-left: 115px;
+}
+
+.form-group #ids {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group #ids input {
+    margin-bottom: 5px; /* inputタグ間のスペース */
 }
 
 .form-group input {

@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
+
 <body>
-	<table border="1">
-		<tr>
-			<th>社員ID</th>
-			<th>社員名</th>
-			<th>年齢</th>
-			<th>パスワード</th>
-		</tr>
-		<tr th:each="user : ${user}">
-			<td th:text="${user.id}"></td>
-			<td th:text="${user.name}"></td>
-			<td th:text="${user.age}"></td>
-			<td th:text="${user.password}"></td>
-		</tr>
-	</table>
-	<div th:if="${user} == null">
-		社員IDがありません
+	<!--ヘッダー-->
+	<header class="header">
+		<p class="header-title">社員情報削除(確認)</p>
+		<p class="header-login" th:if="${session.loginUser != null}">
+			<span th:text="${session.loginUser.name}"></span> さん<br>
+			<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
+		</p>
+	</header>
+	<form action="/deleteForm" method="post">
+		<table border="1">
+			<tr>
+				<th>選択</th>
+				<th>社員ID</th>
+				<th>社員名</th>
+				<th>年齢</th>
+				<th>パスワード</th>
+			</tr>
+			<tr th:each="user : ${users}">
+				<td><input type="checkbox" name="ids" th:value="${user.id}"></td>
+				<td th:text="${user.id}"></td>
+				<td th:text="${user.name}"></td>
+				<td th:text="${user.age}"></td>
+				<td th:text="${user.password}"></td>
+			</tr>
+		</table>
+		<input type="submit" value="削除">
+	</form>
+	<div th:if="${users == null or users.isEmpty()}">
+		該当する社員IDがありません
 	</div>
+	<a href="/logout">ログアウト</a>
 </body>
+
 </html>
