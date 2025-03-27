@@ -15,9 +15,6 @@
 			<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
 		</p>
 	</header>
-	<div th:if="${error}" style="color: red;">
-	    <p th:text="${error}"></p>
-	</div>
 	<form action="/deleteForm" method="post">
 		<table border="1">
 			<tr>
@@ -35,11 +32,11 @@
 				<td th:text="${user.password}"></td>
 			</tr>
 		</table>
+		<div th:if="${users == null or users.isEmpty()}" style="color: red;">
+			該当する社員IDがありません
+		</div>
 		<input type="submit" value="削除">
 	</form>
-	<div th:if="${users == null or users.isEmpty()}">
-		該当する社員IDがありません
-	</div>
 	<a href="/logout">ログアウト</a>
 </body>
 
