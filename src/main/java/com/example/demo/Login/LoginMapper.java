@@ -3,6 +3,7 @@ package com.example.demo.Login;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+//マッパークラス
 @Mapper
 public interface LoginMapper {
 	

@@ -19,11 +19,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 //コントローラークラス
 @Controller
 public class EntryController {
-	//インスタンス作成
+	//インスタンス化
 	@Autowired
 	private EntryService service;
 	
-	//社員情報入力フォーム
+	//社員情報入力画面に遷移
 	@RequestMapping("/entryForm")
 	public String entryForm(HttpSession session, HttpServletRequest request) {
 		String referer = request.getHeader("Referer");
@@ -32,7 +32,7 @@ public class EntryController {
 	    }
 		return "entryForm";
 	}
-	//社員情報登録(入力)
+	//社員情報登録(入力)画面から社員情報登録(確認)画面に遷移
 	@PostMapping("/confirm")
 	public String userConfirm(
 			Model m,
@@ -42,7 +42,7 @@ public class EntryController {
 			@RequestParam("password") String password,
 			@RequestParam("passwordConfirm") String passwordConfirm
 			) {
-		//エラーメッセージを格納
+		//エラーメッセージ
 		List<String> errors = new ArrayList<>();
 		//社員名入力チェック
 		if(name == null || name.trim().isEmpty()) {
@@ -71,7 +71,7 @@ public class EntryController {
 		if(!password.equals(passwordConfirm)) {
 			errors.add("パスワードが一致しません");
 		}
-		//エラーメッセージがある場合、出力する
+		//エラーメッセージ出力
 		if(!errors.isEmpty()) {
 			r.addFlashAttribute("errors", errors);
 			return "redirect:/entryForm";
@@ -92,14 +92,14 @@ public class EntryController {
 	public String previous(HttpSession session) {
 	    // 保存されているURLを取得
 	    String previousUrl = (String) session.getAttribute("previousUrl");
-	    // URLが存在しない場合はデフォルトでメニュー画面へ
+	    // URLが存在しない場合はデフォルトでメニュー画面に遷移
 	    if (previousUrl == null || previousUrl.isEmpty()) {
 	        return "redirect:/menu";
 	    }
 	    return "redirect:" + previousUrl;
 	}
 	
-	//社員情報登録(確認)
+	//社員情報登録(確認)画面から社員情報登録(完了)画面に遷移
 	@PostMapping("/entry")
 	public String userEntry(
 			Model m,
