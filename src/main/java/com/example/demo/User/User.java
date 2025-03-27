@@ -1,5 +1,6 @@
 package com.example.demo.User;
 
+//エンティティクラス
 public class User {
 	//変数
 	private int id;

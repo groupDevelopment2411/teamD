@@ -1,17 +1,19 @@
 package com.example.demo.Login;
 
+//エンティティクラス
 public class Login {
-	
+	//変数
 	private int id;
     private String name;
-
+    
+    //コンストラクタ
     public Login() {}
-
     public Login(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    //ゲッターとセッター
     public int getId() {
         return id;
     }

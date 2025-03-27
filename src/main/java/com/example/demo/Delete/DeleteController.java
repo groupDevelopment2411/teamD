@@ -17,10 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 //コントローラークラス
 @Controller
 public class DeleteController {
-	//インスタンス
+	//インスタンス化
 	@Autowired
 	private DeleteService service;
 
+	//社員情報削除画面へ遷移
 	@RequestMapping("/deleteForm")
 	public String deleteForm(HttpSession session, HttpServletRequest request) {
 		String referer = request.getHeader("Referer");
@@ -35,7 +36,7 @@ public class DeleteController {
 	public String previous(HttpSession session) {
 		// 保存されているURLを取得
 		String previousUrl = (String) session.getAttribute("previousUrl");
-		// URLが存在しない場合はデフォルトでメニュー画面へ
+		// URLが存在しない場合はデフォルトでメニュー画面に遷移
 		if (previousUrl == null || previousUrl.isEmpty()) {
 			return "redirect:/menu";
 		}

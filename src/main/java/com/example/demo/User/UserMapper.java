@@ -5,9 +5,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+//マッパークラス
 @Mapper
 public interface UserMapper {
-	
+	//社員ID検索
 	@Select("<script>"
             + "SELECT * FROM users WHERE id IN "
             + "<foreach item='id' collection='ids' open='(' separator=',' close=')'>"

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 //サービスクラス
 @Service
 public class DeleteService implements DeleteMapper{
-	//マッパークラス作成
+	//インスタンス化
 	@Autowired
 	private DeleteMapper mapper;
 	
