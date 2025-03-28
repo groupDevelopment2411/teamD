@@ -43,7 +43,7 @@ public class UserController {
         return "id";
     }
 	
-	//社員ID検索画面から社員情報画面へ遷移
+	//社員ID表示画面から社員情報画面へ遷移
 	@PostMapping("/deleteForm")
 	@SuppressWarnings("unchecked")
     public String showDeleteForm(@RequestParam("ids") List<Integer> ids, HttpSession session, Model m) {
