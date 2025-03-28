@@ -31,7 +31,7 @@ public class DeleteController {
 		return "deleteForm";
 	}
 
-	//社員情報登録(入力)の戻るボタンでアクセスのあった画面に遷移
+	//社員情報削除(確認)の戻るボタンでアクセスのあった画面に遷移
 	@PostMapping("/previous")
 	public String previous(HttpSession session) {
 		// 保存されているURLを取得

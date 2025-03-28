@@ -9,7 +9,6 @@
 <body>
 	<!--ヘッダー-->
 	<header class="header">
-		<p class="header-title">社員情報削除(確認)</p>
 		<p class="header-login" th:if="${session.loginUser != null}">
 			<span th:text="${session.loginUser.name}"></span> さん<br>
 			<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
@@ -19,6 +18,7 @@
 		<p>複数の社員IDを検索するときは｢,｣をつける</p>
 		社員ID:<input type="text" name="ids"><br>
 		<input type="submit" value="検索">
+		<input type="button" value="戻る" onclick="history.back()">
 	</form>
 	<a href="/logout">ログアウト</a>
 </body>
