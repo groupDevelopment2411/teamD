@@ -15,23 +15,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 //コントローラークラス
 @Controller
 public class EntryController {
 	//インスタンス化
 	@Autowired
 	private EntryService service;
-	
+
 	//社員情報入力画面に遷移
 	@RequestMapping("/entryForm")
-	public String entryForm(HttpSession session, HttpServletRequest request) {
+	public String entryForm(HttpSession session, HttpServletRequest request, Model m) {
 		String referer = request.getHeader("Referer");
-	    if (referer != null) {
-	        session.setAttribute("previousUrl", referer);
-	    }
+		if (referer != null) {
+			session.setAttribute("previousUrl", referer);
+		}
+		// エラー発生後に値を保持する
+		if (m.containsAttribute("name")) {
+			m.addAttribute("name", m.getAttribute("name"));
+		}
+		if (m.containsAttribute("age")) {
+			m.addAttribute("age", m.getAttribute("age"));
+		}
+		if (m.containsAttribute("password")) {
+			m.addAttribute("password", m.getAttribute("password"));
+		}
+		if (m.containsAttribute("passwordConfirm")) {
+			m.addAttribute("passwordConfirm", m.getAttribute("passwordConfirm"));
+		}
 		return "entryForm";
 	}
+
 	//社員情報登録(入力)画面から社員情報登録(確認)画面に遷移
 	@PostMapping("/confirm")
 	public String userConfirm(
@@ -40,45 +53,48 @@ public class EntryController {
 			@RequestParam("name") String name,
 			@RequestParam("age") String age,
 			@RequestParam("password") String password,
-			@RequestParam("passwordConfirm") String passwordConfirm
-			) {
+			@RequestParam("passwordConfirm") String passwordConfirm) {
 		//エラーメッセージ
 		List<String> errors = new ArrayList<>();
 		//社員名入力チェック
-		if(name == null || name.trim().isEmpty()) {
+		if (name == null || name.trim().isEmpty()) {
 			errors.add("社員名を入力してください");
 		}
 		//年齢入力チェック(数値のみ)
 		int numAge = 0;
 		try {
 			numAge = Integer.parseInt(age);
-		}catch(NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			errors.add("年齢は数値で入力してください");
 		}
 		//パスワード入力チェック(半角英数のみ、大文字含む、混合８文字以上)
-		if(password == null || password.trim().isEmpty()) {
+		if (password == null || password.trim().isEmpty()) {
 			errors.add("パスワードの入力は必須です");
-		}else if(password.length() < 8) {
+		} else if (password.length() < 8) {
 			errors.add("パスワードは８文字以上で入力してください");
-		}else if(!password.matches("^[a-zA-Z0-9]+$")) {
+		} else if (!password.matches("^[a-zA-Z0-9]+$")) {
 			errors.add("パスワードは半角英数字で入力してください");
-		}else if(password.matches("^[0-9]{8,}$")) {
+		} else if (password.matches("^[0-9]{8,}$")) {
 			errors.add("パスワードは数字のみでなく、英字も含めてください");
-		}else if(password.matches("^[a-zA-Z]{8,}$")) {
+		} else if (password.matches("^[a-zA-Z]{8,}$")) {
 			errors.add("パスワードは英字のみでなく、数字も含めてください");
 		}
 		//パスワード相関チェック
-		if(!password.equals(passwordConfirm)) {
+		if (!password.equals(passwordConfirm)) {
 			errors.add("パスワードが一致しません");
 		}
 		//エラーメッセージ出力
-		if(!errors.isEmpty()) {
+		if (!errors.isEmpty()) {
 			r.addFlashAttribute("errors", errors);
+			r.addFlashAttribute("name", name);
+			r.addFlashAttribute("age", age);
+			r.addFlashAttribute("password", password);
+			r.addFlashAttribute("passwordConfirm", passwordConfirm);
 			return "redirect:/entryForm";
 		}
 		//パスワードマスキング用変数
 		String passwordMasked = "⚫︎".repeat(password.length());
-		
+
 		m.addAttribute("name", name);
 		m.addAttribute("age", numAge);
 		m.addAttribute("passwordMasked", passwordMasked);
@@ -86,33 +102,33 @@ public class EntryController {
 		m.addAttribute("passwordConfirm", passwordConfirm);
 		return "entryFormConfirm";
 	}
-	
+
 	//社員情報登録(入力)の戻るボタンでアクセスのあった画面に遷移
 	@PostMapping("/previous")
 	public String previous(HttpSession session) {
-	    // 保存されているURLを取得
-	    String previousUrl = (String) session.getAttribute("previousUrl");
-	    // URLが存在しない場合はデフォルトでメニュー画面に遷移
-	    if (previousUrl == null || previousUrl.isEmpty()) {
-	        return "redirect:/menu";
-	    }
-	    return "redirect:" + previousUrl;
+		// 保存されているURLを取得
+		String previousUrl = (String) session.getAttribute("previousUrl");
+		// URLが存在しない場合はデフォルトでメニュー画面に遷移
+		if (previousUrl == null || previousUrl.isEmpty()) {
+			return "redirect:/menu";
+		}
+		return "redirect:" + previousUrl;
 	}
-	
+
 	//社員情報登録(確認)画面から社員情報登録(完了)画面に遷移
 	@PostMapping("/entry")
 	public String userEntry(
 			Model m,
 			@RequestParam("name") String name,
 			@RequestParam("age") int age,
-			@RequestParam("password") String password
-			) {
+			@RequestParam("password") String password) {
 		Entry entry = new Entry(name, age, password);
 		service.insert(entry);
-		
+
 		m.addAttribute("msg", "社員情報の登録が完了しました");
 		return "entryResult";
 	}
+
 	//社員情報登録(確認)戻るボタンでentryFormに遷移
 	@PostMapping("/back")
 	public String backToEntryForm(
@@ -120,28 +136,26 @@ public class EntryController {
 			@RequestParam("name") String name,
 			@RequestParam("age") String age,
 			@RequestParam("password") String password,
-			@RequestParam("passwordConfirm") String passwordConfirm
-			) {
+			@RequestParam("passwordConfirm") String passwordConfirm) {
 		r.addFlashAttribute("name", name);
 		r.addFlashAttribute("age", age);
 		r.addFlashAttribute("password", password);
 		r.addFlashAttribute("passwordConfirm", passwordConfirm);
-		
+
 		return "redirect:/entryForm";
 	}
-	
+
 	//社員情報登録(完了)
 	//メニュー画面へ遷移ボタン
 	@GetMapping("/menu")
 	public String menu() {
 		return "menu";
 	}
-	
+
 	//検索画面へ遷移ボタン
 	@GetMapping("search")
 	public String search() {
 		return "search";
 	}
-	
-	
+
 }
