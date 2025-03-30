@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>社員情報削除(入力)</title>
+	<link rel="stylesheet" href="/css/delete.css">
+</head>
+
+<body>
+	<div class="container">
+		<!--ヘッダー-->
+		<header class="header">
+			<p class="header-title">社員情報削除(入力)</p>
+			<p class="header-login" th:if="${session.loginUser != null}">
+			    <span th:text="${session.loginUser.name}"></span> さん<br>
+			    <span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
+			</p>
+		</header>
+		<hr class="header-hr">
+		<!--社員情報削除(入力)-->
+		<form action="/delete" method="post">
+			<div class="form-group">
+				<p>社員ID</p>
+				<div id="ids"></div>
+			</div>
+				<p class="confirm-msg">こちらを削除します。 よろしいですか？</p>
+				<hr class="footer-hr2">
+				<!--削除ボタン-->
+				<div class="button-group1">
+					<input type="submit" value="削除" class="delete-button">
+				</div>
+		</form>
+		<form action="/previous" method="post">
+			<!--戻るボタン-->
+			<div class="button-group2">
+				<input type="submit" value="戻る" class="return-button">
+			</div>
+		</form>
+		<!--フッター-->
+		<footer>
+			<p>Copyright © 2025 JavaStudy teamD</p>
+		</footer>
+	</div>
+	<a href="/logout">ログアウト</a>
+	<script th:inline="javascript">
+	        /*<![CDATA[*/
+	        const ids = /*[[${ids}]]*/ []; // ThymeleafからIDリストを取得
+	        const idInputs = document.getElementById('ids');
+
+	        ids.forEach(id => {
+	            const input = document.createElement('input');
+	            input.type = 'text';
+	            input.name = 'ids';
+	            input.value = id;
+	            input.readOnly = true;
+	            idInputs.appendChild(input);
+	        });
+	        /*]]>*/
+	    </script>
+</body>
+
+</html>
