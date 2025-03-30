@@ -1,5 +1,6 @@
 package com.example.demo.Delete;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,17 +49,22 @@ public class DeleteController {
 
 	    List<User> users = userService.selectByIds(idList);
 	    Login loginUser = (Login) session.getAttribute("loginUser");
+	    
+	    List<String> errors = new ArrayList<>();
 
 	    if (users.isEmpty()) {
-	        m.addAttribute("error", "該当する社員IDがありません");
-	        return "deleteForm";
-	    }
+			errors.add("該当する社員IDがありません");
+		}
 
-	    List<Integer> userIds = users.stream().map(User::getId).collect(Collectors.toList());
-	    if (loginUser != null && userIds.contains(loginUser.getId())) {
-	        m.addAttribute("error", "ログイン中のIDは削除できません");
-	        return "deleteForm";
-	    }
+		List<Integer> userIds = users.stream().map(User::getId).collect(Collectors.toList());
+		if (loginUser != null && userIds.contains(loginUser.getId())) {
+			errors.add("ログイン中のIDは削除できません");
+		}
+
+		if (!errors.isEmpty()) {
+			m.addAttribute("errors", errors);
+			return "deleteForm";
+		}
 
 	    session.setAttribute("previousUrl", "/deleteForm");
 	    m.addAttribute("ids", userIds);

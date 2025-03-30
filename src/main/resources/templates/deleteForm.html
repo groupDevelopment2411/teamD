@@ -18,9 +18,18 @@
 			</p>
 		</header>
 		<hr class="header-hr">
+		<div th:if="${errors}">
+					<script th:inline="javascript">
+						/*<![CDATA[*/
+						var errors = /*[[${errors}]]*/[];
+						if (errors.length > 0) {
+							alert(errors.join('\n'));
+						}
+						/*]]>*/
+					</script>
+				</div>
 		<!--社員情報削除(入力)-->
 		<form action="/deleteSearch" method="post">
-			<p th:if="${error != null}" style="color: red;" th:text="${error}"></p>
 			<div class="form-group">
 				<label for="ids">社員ID</label>
 				<input type="text" name="ids" id="ids" th:value="${ids}" placeholder="複数の社員IDを検索するときは「,」をつける">
