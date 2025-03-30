@@ -13,22 +13,22 @@
 		<header class="header">
 			<p class="header-title">社員情報削除(入力)</p>
 			<p class="header-login" th:if="${session.loginUser != null}">
-			    <span th:text="${session.loginUser.name}"></span> さん<br>
-			    <span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
+				<span th:text="${session.loginUser.name}"></span> さん<br>
+				<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
 			</p>
 		</header>
 		<hr class="header-hr">
 		<!--社員情報削除(入力)-->
 		<form action="/delete" method="post">
 			<div class="form-group">
-				<p>社員ID</p>
-				<input type="text">
+				<label for="ids">社員ID</label>
+				<input type="text" name="ids" id="ids" th:value="${id}">
 			</div>
-				<hr class="footer-hr">
-				<!--削除ボタン-->
-				<div class="button-group1">
-					<input type="submit" value="削除" class="delete-button">
-				</div>
+			<hr class="footer-hr">
+			<!--削除ボタン-->
+			<div class="button-group1">
+				<input type="submit" value="削除" class="delete-button">
+			</div>
 		</form>
 		<form action="/previous" method="post">
 			<!--戻るボタン-->
@@ -43,20 +43,20 @@
 	</div>
 	<a href="/logout">ログアウト</a>
 	<script th:inline="javascript">
-	        /*<![CDATA[*/
-	        const ids = /*[[${ids}]]*/ []; // ThymeleafからIDリストを取得
-	        const idInputs = document.getElementById('ids');
+		/*<![CDATA[*/
+		const ids = /*[[${ids}]]*/[]; // ThymeleafからIDリストを取得
+		const idInputs = document.getElementById('ids');
 
-	        ids.forEach(id => {
-	            const input = document.createElement('input');
-	            input.type = 'text';
-	            input.name = 'ids';
-	            input.value = id;
-	            input.readOnly = true;
-	            idInputs.appendChild(input);
-	        });
-	        /*]]>*/
-	    </script>
+		ids.forEach(id => {
+			const input = document.createElement('input');
+			input.type = 'text';
+			input.name = 'ids';
+			input.value = id;
+			input.readOnly = true;
+			idInputs.appendChild(input);
+		});
+		/*]]>*/
+	</script>
 </body>
 
 </html>
