@@ -22,27 +22,29 @@ public class UserController {
 	//インスタンス化
 	@Autowired
 	private UserService service;
-	
+
 	//社員ID検索画面へ遷移
 	@RequestMapping("/idForm")
 	public String searchId() {
 		return "idForm";
 	}
-	
+
 	//社員ID検索
 	@PostMapping("/selectByIds")
-    public String getByIds(Model m, @RequestParam("ids") String ids, HttpSession session) {
+	public String getByIds(Model m, @RequestParam("ids") String ids, HttpSession session) {
 		//受け取った社員ID情報の変換処理
-        List<Integer> idList = Arrays.stream(ids.replace("、", ",").split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());  
-        List<User> users = service.selectByIds(idList);
-        m.addAttribute("users", users != null ? users : new ArrayList<>());
-        session.setAttribute("originalIdList", idList);
-        return "id";
-    }
-	
+		List<Integer> idList = Arrays.stream(ids.replace("、", ",").split(","))
+				.map(String::trim)
+				.map(Integer::parseInt)
+				.collect(Collectors.toList());
+		List<User> users = service.selectByIds(idList);
+		m.addAttribute("users", users != null ? users : new ArrayList<>());
+		session.setAttribute("originalIdList", idList);
+		
+		session.setAttribute("previousUrl", "/idForm");
+		return "id";
+	}
+
 	//社員ID表示画面から社員情報画面へ遷移
 	@PostMapping("/deleteForm")
 	@SuppressWarnings("unchecked")
@@ -60,7 +62,7 @@ public class UserController {
             m.addAttribute("users", users);
             return "id";
         }
-
+        //社員情報削除(確認)画面で戻るボタンを押したらアクセスあった画面に戻る
         m.addAttribute("ids", ids);
         return "deleteForm";
     }
