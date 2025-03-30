@@ -22,13 +22,13 @@ public class DeleteController {
 	private DeleteService service;
 
 	//社員情報削除画面へ遷移
-	@RequestMapping("/deleteForm")
-	public String deleteForm(HttpSession session, HttpServletRequest request) {
+	@RequestMapping("/deleteFormConfirm")
+	public String deleteFormConfirm(HttpSession session, HttpServletRequest request) {
 		String referer = request.getHeader("Referer");
 		if (referer != null) {
 			session.setAttribute("previousUrl", referer);
 		}
-		return "deleteForm";
+		return "deleteFormConfirm";
 	}
 
 	//社員情報削除(確認)の戻るボタンでアクセスのあった画面に遷移

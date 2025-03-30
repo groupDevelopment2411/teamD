@@ -46,7 +46,7 @@ public class UserController {
 	}
 
 	//社員ID表示画面から社員情報画面へ遷移
-	@PostMapping("/deleteForm")
+	@PostMapping("/deleteFormConfirm")
 	@SuppressWarnings("unchecked")
     public String showDeleteForm(@RequestParam("ids") List<Integer> ids, HttpSession session, Model m) {
 
@@ -62,9 +62,8 @@ public class UserController {
             m.addAttribute("users", users);
             return "id";
         }
-        //社員情報削除(確認)画面で戻るボタンを押したらアクセスあった画面に戻る
         m.addAttribute("ids", ids);
-        return "deleteForm";
+        return "deleteFormConfirm";
     }
 
 }
