@@ -14,28 +14,39 @@
 			<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
 		</p>
 	</header>
-	<form action="/deleteForm" method="post">
-		<table border="1">
-			<tr>
-				<th>選択</th>
-				<th>社員ID</th>
-				<th>社員名</th>
-				<th>年齢</th>
-				<th>パスワード</th>
-			</tr>
-			<tr th:each="user : ${users}">
-				<td><input type="checkbox" name="ids" th:value="${user.id}"></td>
-				<td th:text="${user.id}"></td>
-				<td th:text="${user.name}"></td>
-				<td th:text="${user.age}"></td>
-				<td th:text="${user.password}"></td>
-			</tr>
-		</table>
-		<div th:if="${users == null or users.isEmpty()}" style="color: red;">
-			該当する社員IDがありません
-		</div>
-		<input type="submit" value="削除">
-	</form>
+	<div th:if="${not #lists.isEmpty(users)}">
+		<form action="/deleteForm" method="post">
+			<table border="1">
+				<tr>
+					<th>選択</th>
+					<th>社員ID</th>
+					<th>社員名</th>
+					<th>年齢</th>
+					<th>パスワード</th>
+				</tr>
+				<tr th:each="user : ${users}">
+					<td><input type="checkbox" name="ids" th:value="${user.id}"></td>
+					<td th:text="${user.id}"></td>
+					<td th:text="${user.name}"></td>
+					<td th:text="${user.age}"></td>
+					<td th:text="${user.password}"></td>
+				</tr>
+			</table>
+			<input type="submit" value="削除">
+		</form>
+		<br>
+	</div>
+	<div th:if="${users == null or users.isEmpty()}" style="color: red;">
+		該当する社員IDがありません
+	</div>
+	<div th:if="${users == null or users.isEmpty()}">
+		<form action="/selectByIds" method="post">
+			<p>複数の社員IDを検索するときは｢,｣をつける</p>
+			社員ID:<input type="text" name="ids"><br>
+			<input type="submit" value="削除">
+			<input type="button" value="戻る" onclick="history.back()">
+		</form>
+	</div>
 	<a href="/logout">ログアウト</a>
 </body>
 
