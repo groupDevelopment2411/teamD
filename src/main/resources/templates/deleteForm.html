@@ -19,10 +19,11 @@
 		</header>
 		<hr class="header-hr">
 		<!--社員情報削除(入力)-->
-		<form action="/delete" method="post">
+		<form action="/deleteSearch" method="post">
+			<p th:if="${error != null}" style="color: red;" th:text="${error}"></p>
 			<div class="form-group">
 				<label for="ids">社員ID</label>
-				<input type="text" name="ids" id="ids" th:value="${id}">
+				<input type="text" name="ids" id="ids" th:value="${ids}" placeholder="複数の社員IDを検索するときは「,」をつける">
 			</div>
 			<hr class="footer-hr">
 			<!--削除ボタン-->
