@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
+
 <body>
 	<h1>検索画面</h1>
-	<a href="/entryForm">社員情報登録</a>
+	<header class="header">
+		<p class="header-title">社員情報登録(入力)</p>
+		<p class="header-login" th:if="${session.loginUser != null}">
+			<span th:text="${session.loginUser.name}"></span> さん<br>
+			<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
+		</p>
+	</header>
+	<a href="/menu">メニュー</a>
+	<a href="/entryForm">社員情報登録</a><br>
+	<a href="/logout">ログアウト</a>
 </body>
+
 </html>
