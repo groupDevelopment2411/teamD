@@ -115,8 +115,8 @@ public class DeleteController {
 	}
 
 	//検索画面へ遷移ボタン
-	@GetMapping("search")
-	public String search() {
-		return "search";
+	@GetMapping("idForm")
+	public String idForm() {
+		return "idForm";
 	}
 }
