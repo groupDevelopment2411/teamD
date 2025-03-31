@@ -15,7 +15,7 @@ public class LoginService implements LoginMapper{
         Login user = mapper.findByNameAndPassword(name, password);
         //社員情報が存在する場合
         if (user != null) {
-        	//社員IDと社員名を持つLoginを作成
+        //社員IDと社員名を持つLoginを作成
             return new Login(user.getId(), user.getName());
         }
         //社員情報が存在しない場合
