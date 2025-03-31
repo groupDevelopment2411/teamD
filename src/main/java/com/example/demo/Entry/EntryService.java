@@ -9,7 +9,8 @@ public class EntryService {
 	//インスタンス化
 	@Autowired
 	private EntryMapper mapper;
-
+	
+	//社員情報登録メソッド
 	public void insert(Entry entry) {
 		mapper.insert(entry);
 	}

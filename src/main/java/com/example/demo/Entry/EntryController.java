@@ -22,9 +22,11 @@ public class EntryController {
 	@Autowired
 	private EntryService service;
 
-	//社員情報入力画面に遷移
+	//社員情報登録
+	//entryForm.htmlに遷移
 	@RequestMapping("/entryForm")
 	public String entryForm(HttpSession session, HttpServletRequest request, Model m) {
+		//直前のURLをセッションに保存
 		String referer = request.getHeader("Referer");
 		if (referer != null) {
 			session.setAttribute("previousUrl", referer);
@@ -45,7 +47,8 @@ public class EntryController {
 		return "entryForm";
 	}
 
-	//社員情報登録(入力)画面から社員情報登録(確認)画面に遷移
+	//entryForm.htmlからentryFormConfirm.htmlに遷移
+	//入力したデータの入力チェックを行う
 	@PostMapping("/confirm")
 	public String userConfirm(
 			Model m,
@@ -54,7 +57,7 @@ public class EntryController {
 			@RequestParam("age") String age,
 			@RequestParam("password") String password,
 			@RequestParam("passwordConfirm") String passwordConfirm) {
-		//エラーメッセージ
+		//エラーメッセージ格納
 		List<String> errors = new ArrayList<>();
 		//社員名入力チェック
 		if (name == null || name.trim().isEmpty()) {
@@ -94,7 +97,7 @@ public class EntryController {
 		}
 		//パスワードマスキング用変数
 		String passwordMasked = "⚫︎".repeat(password.length());
-
+		//社員情報登録(確認)画面に表示するために格納
 		m.addAttribute("name", name);
 		m.addAttribute("age", numAge);
 		m.addAttribute("passwordMasked", passwordMasked);
@@ -103,7 +106,7 @@ public class EntryController {
 		return "entryFormConfirm";
 	}
 
-	//社員情報登録(入力)の戻るボタンでアクセスのあった画面に遷移
+	//entryForm.htmlの戻るボタンで直前のURLに遷移
 	@PostMapping("/previous")
 	public String previous(HttpSession session) {
 		// 保存されているURLを取得
@@ -115,7 +118,9 @@ public class EntryController {
 		return "redirect:" + previousUrl;
 	}
 
-	//社員情報登録(確認)画面から社員情報登録(完了)画面に遷移
+	//社員情報登録(確認)
+	//entryFormConfirm.htmlからentryResult.htmlに遷移
+	//社員情報を登録
 	@PostMapping("/entry")
 	public String userEntry(
 			Model m,
@@ -129,7 +134,8 @@ public class EntryController {
 		return "entryResult";
 	}
 
-	//社員情報登録(確認)戻るボタンでentryFormに遷移
+	//entryFormConfirm.htmlからentryForm.htmlに遷移
+	//社員情報登録(確認)画面に表示されているデータを社員情報登録(入力)に戻っても保持
 	@PostMapping("/back")
 	public String backToEntryForm(
 			RedirectAttributes r,
@@ -137,6 +143,7 @@ public class EntryController {
 			@RequestParam("age") String age,
 			@RequestParam("password") String password,
 			@RequestParam("passwordConfirm") String passwordConfirm) {
+		//入力したデータを渡す
 		r.addFlashAttribute("name", name);
 		r.addFlashAttribute("age", age);
 		r.addFlashAttribute("password", password);
