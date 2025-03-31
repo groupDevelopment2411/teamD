@@ -16,19 +16,23 @@ public class LoginController {
 	@Autowired
     private LoginService loginService;
 
-	//ログイン画面に遷移
+	//login.htmlに遷移
     @GetMapping("/login")
     public String showLoginPage() {
         return "login";
     }
 
-    //ログイン画面から社員情報登録画面へ遷移
+    //login.htmlからmenu.htmlに遷移
+    //ログインユーザの情報をセッションに保持
     @PostMapping("/login")
     public String login(@RequestParam String name, @RequestParam String password, HttpSession session, Model m) {
+    	//社員名とパスワードを取得
         Login user = loginService.findByNameAndPassword(name, password);
+        //社員情報認証成功の場合
         if (user != null) {
             session.setAttribute("loginUser", user);
-            return "redirect:/entryForm"; 
+            return "redirect:/menu"; 
+        //社員情報認証失敗の場合
         } else {
             m.addAttribute("error", "ユーザー名またはパスワードが間違っています");
             return "login";

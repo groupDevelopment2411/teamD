@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface LoginMapper {
 	
+	//社員名とパスワードの取得
 	@Select("SELECT * FROM users WHERE name = #{name} AND password = #{password}")
     Login findByNameAndPassword(String name, String password);
 }

@@ -3,10 +3,12 @@ package com.example.demo.Login;
 //エンティティクラス
 public class Login {
 	//変数
+	//社員ID
 	private int id;
+	//社員名
     private String name;
 
-    //コメントアウト
+    //コンストラクタ
     public Login() {}
     public Login(int id, String name) {
         this.id = id;
