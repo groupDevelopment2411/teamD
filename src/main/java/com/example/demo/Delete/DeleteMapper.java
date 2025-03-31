@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface DeleteMapper {
 	
+	//複数の社員IDをusersテーブルから削除
 	@Delete("<script>DELETE FROM users WHERE id IN "
             + "<foreach item='id' collection='list' open='(' separator=',' close=')'>#{id}</foreach>"
             + "</script>")

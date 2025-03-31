@@ -12,6 +12,7 @@ public class DeleteService implements DeleteMapper{
 	@Autowired
 	private DeleteMapper mapper;
 	
+	//社員情報削除メソッド
 	public void delete(List<Integer> ids) {
         mapper.delete(ids); 
     }
