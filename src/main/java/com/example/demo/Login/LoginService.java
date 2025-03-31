@@ -13,12 +13,12 @@ public class LoginService implements LoginMapper{
 	//社員情報認証
     public Login findByNameAndPassword(String name, String password) {
         Login user = mapper.findByNameAndPassword(name, password);
-        //社員情報認証成功の場合
+        //社員情報が存在する場合
         if (user != null) {
         	//社員IDと社員名を持つLoginを作成
             return new Login(user.getId(), user.getName());
         }
-        //社員情報認証失敗の場合
+        //社員情報が存在しない場合
         return null;
     }
 }
