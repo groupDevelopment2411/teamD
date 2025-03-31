@@ -14,7 +14,6 @@
 			<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
 		</p>
 	</header>
-	<div th:if="${not #lists.isEmpty(users)}">
 		<form action="/deleteFormConfirm" method="post">
 			<table border="1">
 				<tr>
@@ -34,19 +33,6 @@
 			</table>
 			<input type="submit" value="削除">
 		</form>
-		<br>
-	</div>
-	<div th:if="${users == null or users.isEmpty()}" style="color: red;">
-		該当する社員IDがありません
-	</div>
-	<div th:if="${users == null or users.isEmpty()}">
-		<form action="/selectByIds" method="post">
-			<p>複数の社員IDを検索するときは｢,｣をつける</p>
-			社員ID:<input type="text" name="ids"><br>
-			<input type="submit" value="削除">
-			<input type="button" value="戻る" onclick="history.back()">
-		</form>
-	</div>
 	<a href="/logout">ログアウト</a>
 </body>
 

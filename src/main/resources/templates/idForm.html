@@ -14,6 +14,16 @@
 			<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
 		</p>
 	</header>
+	<div th:if="${errors}">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			var errors = /*[[${errors}]]*/[];
+			if (errors.length > 0) {
+				alert(errors.join('\n'));
+			}
+			/*]]>*/
+		</script>
+	</div>
 	<form action="/selectByIds" method="post">
 		<p>複数の社員IDを検索するときは｢,｣をつける</p>
 		社員ID:<input type="text" name="ids"><br>

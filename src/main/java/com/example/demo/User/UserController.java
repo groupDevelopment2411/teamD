@@ -32,38 +32,46 @@ public class UserController {
 	//社員ID検索
 	@PostMapping("/selectByIds")
 	public String getByIds(Model m, @RequestParam("ids") String ids, HttpSession session) {
-		//受け取った社員ID情報の変換処理
+		// 入力された社員ID文字列をカンマや全角カンマで分割し、空白を取り除き、Integer型のリストに変換
 		List<Integer> idList = Arrays.stream(ids.replace("、", ",").split(","))
 				.map(String::trim)
 				.map(Integer::parseInt)
 				.collect(Collectors.toList());
+		// 社員IDから社員情報を検索
 		List<User> users = service.selectByIds(idList);
+		// セッションからログインユーザ情報を取得
+		Login loginUser = (Login) session.getAttribute("loginUser");
+
+		// エラーメッセージを格納
+		List<String> errors = new ArrayList<>();
+		// 社員IDが存在しない場合
+		if (users.isEmpty()) {
+			errors.add("該当する社員IDがありません");
+		}
+		// 検索対象がセッションに保存されているログイン中のユーザの場合
+		List<Integer> userIds = users.stream().map(User::getId).collect(Collectors.toList());
+		if (loginUser != null && userIds.contains(loginUser.getId())) {
+			errors.add("ログイン中のIDが含まれています");
+		}
+		// エラーがある場合
+		if (!errors.isEmpty()) {
+			m.addAttribute("errors", errors);
+			return "idForm";
+		}
+
+		// エラーがない場合、社員IDをセッションに格納して遷移
 		m.addAttribute("users", users != null ? users : new ArrayList<>());
 		session.setAttribute("originalIdList", idList);
-		
+
 		session.setAttribute("previousUrl", "/idForm");
-		return "id";
+		return "id"; // 
 	}
 
-	//社員ID表示画面から社員情報画面へ遷移
+	//id.htmlからdeleteFormConfirm.htmlに遷移
 	@PostMapping("/deleteFormConfirm")
-	@SuppressWarnings("unchecked")
-    public String showDeleteForm(@RequestParam("ids") List<Integer> ids, HttpSession session, Model m) {
-
-        Login loginUser = (Login) session.getAttribute("loginUser");
-        //ログイン中のユーザの社員IDが含まれているか確認
-        if (loginUser != null && ids.contains(loginUser.getId())) {
-        	//エラーメッセージ
-            m.addAttribute("error", "ログイン中のIDは削除できません");
-            // 検索した社員IDリストを取得
-            List<Integer> originalIdList = (List<Integer>) session.getAttribute("originalIdList");
-            // 社員IDリストでユーザー情報を再取得
-            List<User> users = service.selectByIds(originalIdList);
-            m.addAttribute("users", users);
-            return "id";
-        }
-        m.addAttribute("ids", ids);
-        return "deleteFormConfirm";
-    }
+		public String showDeleteForm(@RequestParam("ids") List<Integer> ids,  Model m) {
+			m.addAttribute("ids", ids);
+			return "deleteFormConfirm";
+		}
 
 }
