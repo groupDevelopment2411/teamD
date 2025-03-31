@@ -12,6 +12,7 @@ public class UserService implements UserMapper {
 	@Autowired
 	private UserMapper mapper;
 	
+	//複数の社員IDを検索するメソッド
 	public List<User> selectByIds(List<Integer> ids){
 		return mapper.selectByIds(ids);
 	}

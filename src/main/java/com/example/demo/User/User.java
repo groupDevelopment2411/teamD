@@ -3,9 +3,13 @@ package com.example.demo.User;
 //エンティティクラス
 public class User {
 	//変数
+	//社員ID
 	private int id;
+	//社員名
 	private String name;
+	//年齢
 	private int age;
+	//パスワード
 	private String password;
 	
 	//コンストラクタ

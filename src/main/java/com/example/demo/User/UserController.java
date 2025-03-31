@@ -23,13 +23,14 @@ public class UserController {
 	@Autowired
 	private UserService service;
 
-	//社員ID検索画面へ遷移
+	//idForm.htmlに遷移
 	@RequestMapping("/idForm")
 	public String searchId() {
 		return "idForm";
 	}
 
-	//社員ID検索
+	//idForm.htmlからid.htmlに遷移
+	//社員ID検索して存在すれば社員IDを表示
 	@PostMapping("/selectByIds")
 	public String getByIds(Model m, @RequestParam("ids") String ids, HttpSession session) {
 		// 入力された社員ID文字列をカンマや全角カンマで分割し、空白を取り除き、Integer型のリストに変換
@@ -68,6 +69,7 @@ public class UserController {
 	}
 
 	//id.htmlからdeleteFormConfirm.htmlに遷移
+	//削除したい社員IDを選択
 	@PostMapping("/deleteFormConfirm")
 		public String showDeleteForm(@RequestParam("ids") List<Integer> ids,  Model m) {
 			m.addAttribute("ids", ids);
