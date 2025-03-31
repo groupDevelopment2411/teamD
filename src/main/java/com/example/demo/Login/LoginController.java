@@ -23,6 +23,7 @@ public class LoginController {
     }
 
     //login.htmlからmenu.htmlに遷移
+    //ログイン情報をセッションに保存
     @PostMapping("/login")
     public String login(@RequestParam String name, @RequestParam String password, HttpSession session, Model m) {
     	//社員名とパスワード取得
