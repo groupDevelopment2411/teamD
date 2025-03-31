@@ -3,7 +3,9 @@ package com.example.demo.Login;
 //エンティティクラス
 public class Login {
 	//変数
+	//社員ID
 	private int id;
+	//社員名
     private String name;
     
     //コンストラクタ
