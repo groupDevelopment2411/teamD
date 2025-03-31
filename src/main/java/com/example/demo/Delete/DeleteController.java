@@ -80,14 +80,14 @@ public class DeleteController {
 
 	
 	//削除予定
-	@RequestMapping("/deleteFormConfirm")
-	public String deleteFormConfirm(HttpSession session, HttpServletRequest request) {
-		String referer = request.getHeader("Referer");
-		if (referer != null) {
-			session.setAttribute("previousUrl", referer);
-		}
-		return "deleteFormConfirm";
-	}
+//	@RequestMapping("/deleteFormConfirm")
+//	public String deleteFormConfirm(HttpSession session, HttpServletRequest request) {
+//		String referer = request.getHeader("Referer");
+//		if (referer != null) {
+//			session.setAttribute("previousUrl", referer);
+//		}
+//		return "deleteFormConfirm";
+//	}
 
 	//直前のURLに戻る
 	@PostMapping("/previous")
