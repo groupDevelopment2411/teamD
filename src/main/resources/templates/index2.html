@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="ja">
-<html xmlns:th ="http://www.thymeleaf.org">
+<html lang="ja" xmlns:th ="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>トップメニュー</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" th: href="./Style2.css"/>
+	<link rel="stylesheet" th:href="@{/Style2.css}"/>
 </head>
 
 <body>
@@ -17,12 +16,12 @@
 		<h2>トップメニュー</h2>
 	
 	     <ul class = block1>
-	          <li><a href="">社員情報検索</li></a>
-	          <li><a href="">社員情報削除</li></a>
+	          <li><a href="">社員情報検索</a></li>
+	          <li><a href="">社員情報削除</a></li>
 	     </ul>
 	     <ul class = block2>
-	          <li><a href="">社員情報登録</li></a>
-	          <li><a href="http://localhost:8080/updateForm">社員情報更新</li></a>
+	          <li><a href="">社員情報登録</a></li>
+	          <li><a href="http://localhost:8080/updateForm">社員情報更新</a></li>
 	     </ul>
 	     <small>Teamd&copy; 2025</small>
 </body>

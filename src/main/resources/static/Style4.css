@@ -114,7 +114,12 @@ p{
      border-bottom: 3px solid black;
     
 }
-.error-message{
-	text-decoration: red;
+input[name =id]{
+	background-color: darkgrey;
 }
+.error-message{
+	color: red;
+}
+ 
+
  

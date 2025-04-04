@@ -11,14 +11,21 @@
 <body>
 	<h3 id="name"><span th:text="${session.userName} ?: 'ゲスト'"></span>さん</h3>
 	     <h5 id="login"><span th:text="${session.currentTime}"></span></h5>
+		 
+		 <form th:action="@{/updatecomplete}" method="post">
 	     <h2>社員情報更新（完了）</h2>
 	     
 	     <h1 class="complete">社員情報の更新が完了しました</h1>
 	     <p></p>
 	     
+		 </form>
+		 <form id ="Selectback3" th:action="@{/Selectback3}" method="post">
 	     <ul class="button-group">
-	          <li><input type="submit" value="メニュー" onclick="submitForm('/Select')"></li>
-	          <li><input type="submit" value="検索へ" ></li">
+			
+	          <li><input type="submit" value="メニュー"></li>
+			</form>
+			
+	          <li><input type="submit" value="検索へ" ></li>
 
 			  
 </body>

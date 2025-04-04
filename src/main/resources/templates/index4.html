@@ -7,44 +7,56 @@
      <link rel="stylesheet" href="./Style4.css">
 </head>
 <body>
-	<h3 id="name"><span th:text="${session.userName} != null ? session.userName : 'ゲスト'"></span>さん</h3>
+	<h3 id="name"><span th:text="${session.userName} ?: 'ゲスト'"></span>さん</h3>
 	<h5 id="login"><span th:text="${session.currentTime}"></span></h5>
 	<h2>社員情報更新（入力）</h2>
 	
+	<form id = "updatecomplete" th:action="@{/updatecomplete}" method="post">
 	<ul class="id">
 	       <li>社員ID</li>
-	       <li><input type="text"  name ="id"  th:value="${session.id}" maxlength="200" readonly></li> 
+	       <li><input type="text"  name ="id"  th:value="${session.id != null ? session.id : ''}" maxlength="200" readonly></li> 
 	   </ul>
 	   <ul class="name">
 	        <li>社員名<span class="error-message">*</span></li>
-	        <li><input type="text" name="name" th:value="${entity.name}" maxlength="200" required></li>
+	        <li><input type="text" name="name" th:value="${entity != null ? entity.name :''}" maxlength="200" required></li>
 	   </ul>
 	   <ul class="age">
 	        <li>年齢<span class="error-message">*</span></li>
-	        <li><input type="text" name ="age"  th:value="${entity.age}" maxlength="200" required></li>
+	        <li><input type="text" name ="age"  th:value="${entity != null ? entity.age :''}" maxlength="200" required></li>
 	   </ul>
 	   <ul class="password">
-	        <li>パスワード<span class="error-message">*</span></li>
-	        <li><input type="password" name="password" th:value="${entity.password}" maxlength="200" required></li>
+	        <li>パスワード<span class="error-message">*</span></li> 
+	        <li><input type="password" name="password" th:value="${entity != null ? entity.password :''}" maxlength="200" required></li>
 	   </ul>
 	   <ul class="check">
 	        <li>パスワード確認<span class="error-message">*</span></li>
-	        <li><input type="password" name="check" th:value="${entity.password}" maxlength="200" required></li >
+	        <li><input type="password" name="check" th:value="${entity != null ? entity.password :''}" maxlength="200" required></li >
 	   </ul>
 	   <ul class="start">
 	        <li>開始日<span class="error-message">*</span></li>
-	        <li><input type="date" name="start"  th:value="${#dates.format(entity.start, 'yyyy-MM-dd')}" maxlength="200" required></li>
+	        <li><input type="date" name="start"  th:value="${entity != null && entity.start != null ?  #dates.format(entity.start, 'yyyy-MM-dd') :''}" maxlength="200" required></li>
 	   </ul>
 	   <ul class="end">
 	        <li>終了日<span class="error-message">*</span></li>
-	        <li><input type="date" name="end"  th:value="${#dates.format(entity.end, 'yyyy-MM-dd')}" maxlength="200"required></li>
+	        <li><input type="date" name="end"  th:value="${entity != null && entity.end != null ? #dates.format(entity.end, 'yyyy-MM-dd') :''} " maxlength="200"required></li>
 	   </ul>
 	   <div class="word">
 	   <p>こちらで更新します。よろしいですか？</p>
 	   </div>
 	   <ul class="button-group">
 	        <li><input type="submit" value="更新"></li>
-	        <li><input type="submit" value="戻る"></li>
-	   </ul>
+	</form>
+		
+	<form id ="updateForm2" th:action="@{/updateForm2}" method="post">
+		<input type="hidden" name="id" th:value="${entity.id}">
+		 <input type="hidden" name="name" th:value="${entity.name}">
+		 <input type="hidden" name="age" th:value="${entity.age}">
+		 <input type="hidden" name="password" th:value="${entity.password}">
+		 <input type="hidden" name="check" th:value="${entity.password}">
+		 <input type="hidden" name="start" th:value="${#dates.format(entity.start, 'yyyy-MM-dd')}">
+		 <input type="hidden" name="end" th:value="${#dates.format(entity.end, 'yyyy-MM-dd')}">	
+	     <li><input type="submit" value="戻る"></li>
+		</ul>
+	</form>
 </body>
 </html>
