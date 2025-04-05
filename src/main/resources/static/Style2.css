@@ -10,6 +10,12 @@ ul{
      width: 50%;
      
 }
+#name{
+	text-align: right;
+}
+#login{
+	text-align: right;
+}
 ul.block1{
      
      display: flex;

@@ -12,6 +12,10 @@ public class Entity {
 	private Date start;
 	private Date end;
 	
+	public Entity() {
+		
+	}
+	
 	public Entity(int id, String name, int age, String password, Date start, Date end) {
 		this.id = id;
 		this.name =name;
@@ -19,6 +23,8 @@ public class Entity {
 		this.password =password;
 		this.start =start;
 		this.end =end;
+		
+		
 		
 	}
 
@@ -70,4 +76,3 @@ public class Entity {
 		this.end = end;
 	}
 }
-	

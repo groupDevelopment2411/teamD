@@ -73,6 +73,10 @@ ul.end{
 
 }
 
+h4{
+	text-align: center;
+}
+
 .button-group {
      display: flex;      
      justify-content: center; 
@@ -103,8 +107,8 @@ input{
      font-size: 16px;
  }
 
-p{
-     border-top: 3px solid black;
+p{	
+     border-bottom: 3px solid black;
 }
 input[name =id]{
 	background-color: darkgrey;

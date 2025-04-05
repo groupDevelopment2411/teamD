@@ -1,8 +1,14 @@
 @charset "UTF-8";
-h3{
+h2{
      color: red;
      border-bottom: 3px solid black;
      margin: 10px;
+}
+#name{
+	text-align: right;
+}
+#login{
+	text-align: right;
 }
 .complete{
      text-align: center;
