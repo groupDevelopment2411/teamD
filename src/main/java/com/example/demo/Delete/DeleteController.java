@@ -32,7 +32,7 @@ public class DeleteController {
 	//社員情報削除(入力)
 	//deleteForm.htmlに遷移
 	@RequestMapping("/deleteForm")
-	public String deleteForm(HttpSession session, HttpServletRequest request) {
+	public String deleteForm(HttpSession session, HttpServletRequest request, Model m) {
 		//直前のURLをセッションに保存
 		String referer = request.getHeader("Referer");
 		if (referer != null) {
@@ -69,6 +69,7 @@ public class DeleteController {
 		//エラーがある場合
 		if (!errors.isEmpty()) {
 			m.addAttribute("errors", errors);
+			m.addAttribute("ids", ids);
 			return "deleteForm";
 		}
 		//エラーがない場合、直前のURLをセッションに保存
@@ -77,17 +78,6 @@ public class DeleteController {
 	    m.addAttribute("ids", userIds);
 	    return "deleteFormConfirm";
 	    }
-
-	
-	//削除予定
-//	@RequestMapping("/deleteFormConfirm")
-//	public String deleteFormConfirm(HttpSession session, HttpServletRequest request) {
-//		String referer = request.getHeader("Referer");
-//		if (referer != null) {
-//			session.setAttribute("previousUrl", referer);
-//		}
-//		return "deleteFormConfirm";
-//	}
 
 	//直前のURLに戻る
 	@PostMapping("/previous")
