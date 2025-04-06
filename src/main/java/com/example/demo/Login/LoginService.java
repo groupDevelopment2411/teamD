@@ -11,8 +11,8 @@ public class LoginService implements LoginMapper{
 	private LoginMapper mapper;
 	
 	//社員情報認証
-    public Login findByNameAndPassword(String name, String password) {
-        Login user = mapper.findByNameAndPassword(name, password);
+    public Login findByNameAndPassword(int id, String password) {
+        Login user = mapper.findByNameAndPassword(id, password);
         //社員情報が存在する場合
         if (user != null) {
         //社員IDと社員名を持つLoginを作成

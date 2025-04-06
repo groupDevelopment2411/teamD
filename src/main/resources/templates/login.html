@@ -14,6 +14,16 @@
 		<label>パスワード: <input type="password" name="password"></label><br>
 		<input type="submit" value="ログイン">
 	</form>
+	<div th:if="${errors}">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			var errors = /*[[${errors}]]*/[];
+			if (errors.length > 0) {
+				alert(errors.join('\n'));
+			}
+			/*]]>*/
+		</script>
+	</div>
 	<a href="/logout">ログアウト</a>
 </body>
 
