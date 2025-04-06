@@ -32,7 +32,7 @@ public class DeleteController {
 	//社員情報削除(入力)
 	//deleteForm.htmlに遷移
 	@RequestMapping("/deleteForm")
-	public String deleteForm(HttpSession session, HttpServletRequest request, Model m) {
+	public String deleteForm(HttpSession session, HttpServletRequest request) {
 		//直前のURLをセッションに保存
 		String referer = request.getHeader("Referer");
 		if (referer != null) {
