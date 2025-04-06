@@ -37,21 +37,22 @@ public class LoginController {
 			errors.add("ユーザーIDは数字で入力してください。");
 			m.addAttribute("errors", errors);
 			return "login";
-			//社員名とパスワードを取得
-			Login user = loginService.findByNameAndPassword(userId, password);
-			//社員情報認証成功の場合
-			if (user != null) {
-				session.setAttribute("loginUser", user);
-				return "redirect:/menu";
-				//社員情報認証失敗の場合
-			} else {
-				if (errors.isEmpty()) {
-					errors.add("ユーザー名またはパスワードが間違っています");
-				}
-				m.addAttribute("errors", errors);
-				return "login";
-			}
 		}
+		//社員名とパスワードを取得
+		Login user = loginService.findByNameAndPassword(userId, password);
+		//社員情報認証成功の場合
+		if (user != null) {
+			session.setAttribute("loginUser", user);
+			return "redirect:/menu";
+			//社員情報認証失敗の場合
+		} else {
+			if (errors.isEmpty()) {
+				errors.add("ユーザー名またはパスワードが間違っています");
+			}
+			m.addAttribute("errors", errors);
+			return "login";
+		}
+	}
 
 	//ログアウト
 	@GetMapping("/logout")
