@@ -91,6 +91,10 @@ footer {
 	font-size: 18px;
 }
 
+input::placeholder {
+  font-size: 0.6em;
+}
+
 .confirm-button {
 	background-color: orange;
 	border: 1px solid;

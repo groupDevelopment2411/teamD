@@ -81,6 +81,8 @@ public class EntryController {
 			errors.add("パスワードは数字のみでなく、英字も含めてください");
 		} else if (password.matches("^[a-zA-Z]{8,}$")) {
 			errors.add("パスワードは英字のみでなく、数字も含めてください");
+		}else if (!password.matches(".*[A-Z].*")) {
+			errors.add("パスワードには大文字の英字を1文字以上含めてください");
 		}
 		//パスワード相関チェック
 		if (!password.equals(passwordConfirm)) {
