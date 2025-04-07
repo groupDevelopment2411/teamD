@@ -1,0 +1,41 @@
+@charset "UTF-8";
+h2{
+     color: red;
+     border-bottom: 3px solid black;
+     margin: 10px;
+}
+
+ul{
+     padding: 50px;
+     width: 50%;
+     
+}
+#name{
+	text-align: right;
+}
+#login{
+	text-align: right;
+}
+ul.block1{
+     
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+
+}
+ul.block2{
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+}
+li{  font-size: 20px;
+     font-weight: 500;
+     list-style: none;
+     text-decoration: underline;
+}
+small{
+     position:fixed;
+     bottom: 10%;
+     right: 10%;
+}
+

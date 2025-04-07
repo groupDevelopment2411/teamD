@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+h2{
+     color: red;
+     border-bottom: 3px solid black;
+     margin: 10px;
+}
+.Session{
+	text-align: right;
+}
+
+ul{
+     font-size: 20px;
+     font-weight: 500;
+     padding: 20px;
+     width: 40%;  
+     margin: 0 auto;
+     align-items: center; 
+     justify-content:space-around ;
+     list-style: none;
+     display: flex;
+}
+ul li:first-child {
+     width: 50%;  
+     text-align: left;  
+     font-weight: bold; 
+ }
+ 
+ ul li:last-child {
+     flex-grow: 1;  
+ }
+ul.id{
+     
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+
+}
+ul.name{
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+
+}
+ul.age{
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+
+}
+ul.password{
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+
+}
+ul.check{
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+
+}
+ul.start{
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+
+}
+ul.end{
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+
+}
+
+h4{
+	text-align: center;
+}
+
+.button-group {
+     display: flex;      
+     justify-content: center; 
+     width: 20%;
+     gap: 20px;           
+     margin-top: 10px;    
+     padding: 0;
+     list-style: none;
+ }
+ 
+ .button-group li {
+     list-style: none;  
+ }
+ 
+
+ .button-group input {
+     width: 150px;
+     padding: 15px;
+     font-size: 15px;
+     cursor: pointer;
+     border: 1px solid black;
+ }
+ 
+
+input{
+     width: 200px;
+     padding: 5px;
+     font-size: 16px;
+ }
+
+p{	
+     border-bottom: 3px solid black;
+}
+input[name =id]{
+	background-color: darkgrey;
+}
+.error-message{
+	color: red;
+}
+ 

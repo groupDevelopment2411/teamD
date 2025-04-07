@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="./Style3.css">
+     <title>社員情報更新</title>
+	 <script th:inline="javascript">
+	        
+	         window.onload = function() {
+	             var errorMessage = /*[[${ErrorMessage}]]*/'';
+	             if (errorMessage) {
+	                 alert(errorMessage);
+	             }
+	         }
+	     </script>
+</head>
+<body>
+	<div class ="Session">
+	<h3 id="name"><span th:text="${session.userName} ?: 'ゲスト'"></span>さん</h3>
+	<h5 id="login"><span th:text="${session.currentTime}"></span></h5>
+	</div>
+	<h2>社員情報更新（入力）</h2>
+	<form id ="updateForm" th:action="@{/update}" method="post">
+     <ul class="id">
+         <li>社員ID</li>
+         <li><input type="text" name ="id" th:value="${session.id}" maxlength="200"  readonly ></li> 
+     </ul>
+     <ul class="name">
+          <li>社員名<span class="error-message">*</span></li>
+          <li><input type="text" name="name" th:value="${name}" maxlength="200" required ></li>
+		  
+     </ul>
+     <ul class="age">
+          <li>年齢<span class="error-message">*</span></li>
+          <li><input type="text" name ="age" th:value="${age}" maxlength="200" required ></li>
+		
+     </ul>
+     <ul class="password">
+          <li>パスワード<span class="error-message">*</span></li>
+          <li><input type="password" name="password" th:value="${password}" maxlength="200" required ></li>
+		
+     </ul>
+     <ul class="check">
+          <li>パスワード確認<span class="error-message">*</span></li>
+          <li><input type="password" name="check"  th:value="${check}"   maxlength="200" required ></li>
+		  
+     </ul>
+     <ul class="start">
+          <li>開始日<span class="error-message">*</span></li>
+          <li><input type="date" name="start" th:value="${start !=null ? start : ''}" maxlength="200" required ></li>
+		
+	 </ul>
+     <ul class="end">
+          <li>終了日<span class="error-message">*</span></li>
+          <li><input type="date" name="end"  th:value="${end != null ? end : ''}" maxlength="200" required ></li>
+		  
+	</ul>
+	<h4 class="Error-message" th:if="${ErrorMessage}" th:text="${ErrorMessage}"></h4>
+	<p></p>
+     <ul class="button-group">
+	
+          <li><input type="submit" value="確認"></li>
+	</form>
+	
+          <li><input type="submit" value="削除"></li>
+	
+          <li><form id = "Selectback" th:action="@{/Selectback}" method="post"><input type="submit" value="戻る"></form></li>
+     </ul>
+	 
+</body>
+</html>
