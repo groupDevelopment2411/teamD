@@ -45,6 +45,14 @@ public class DeleteController {
 	//社員IDを検索してデータが存在すれば社員情報削除(確認)に遷移
 	@PostMapping("/deleteSearch")
 	public String deleteSearch(Model m, @RequestParam("ids") String ids, HttpSession session) {
+		//エラーメッセージを格納
+	    List<String> errors = new ArrayList<>();
+	    // 何も入力されなかった場合
+		if (ids == null || ids.trim().isEmpty()) {
+			errors.add("社員IDを入力してください");
+			m.addAttribute("errors", errors);
+			return "deleteForm";
+		}
 		// 入力された社員ID文字列をカンマや全角カンマで分割し、空白を取り除き、Integer型のリストに変換
 	    List<Integer> idList = Arrays.stream(ids.replace("、", ",").split(","))
 	                            .map(String::trim)
@@ -54,9 +62,6 @@ public class DeleteController {
 	    List<User> users = userService.selectByIds(idList);
 	    //セッションからログインユーザ情報を取得
 	    Login loginUser = (Login) session.getAttribute("loginUser");
-	    
-	    //エラーメッセージを格納
-	    List<String> errors = new ArrayList<>();
 	    //社員IDが存在しない場合
 	    if (users.isEmpty()) {
 			errors.add("該当する社員IDがありません");
