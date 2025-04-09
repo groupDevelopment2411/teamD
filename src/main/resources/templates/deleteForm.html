@@ -19,15 +19,15 @@
 		</header>
 		<hr class="header-hr">
 		<div th:if="${errors}">
-					<script th:inline="javascript">
-						/*<![CDATA[*/
-						var errors = /*[[${errors}]]*/[];
-						if (errors.length > 0) {
-							alert(errors.join('\n'));
-						}
-						/*]]>*/
-					</script>
-				</div>
+			<script th:inline="javascript">
+				/*<![CDATA[*/
+				var errors = /*[[${errors}]]*/[];
+				if (errors.length > 0) {
+					alert(errors.join('\n'));
+				}
+				/*]]>*/
+			</script>
+		</div>
 		<!--社員情報削除(入力)-->
 		<form action="/deleteSearch" method="post">
 			<div class="form-group">
