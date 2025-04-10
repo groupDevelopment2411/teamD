@@ -73,9 +73,6 @@ footer {
 	border: 1px solid #000;
 	font-size: 18px;
 }
-input::placeholder {
-  font-size: 0.5em;
-}
 
 /*deleteFormConfirm.html*/
 .form-group p {
