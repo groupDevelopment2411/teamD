@@ -32,12 +32,17 @@ public class DeleteController {
 	//社員情報削除(入力)
 	//deleteForm.htmlに遷移
 	@RequestMapping("/deleteForm")
-	public String deleteForm(HttpSession session, HttpServletRequest request) {
+	public String deleteForm(HttpSession session, HttpServletRequest request, Model m) {
 		//直前のURLをセッションに保存
 		String referer = request.getHeader("Referer");
 		if (referer != null) {
 			session.setAttribute("previousUrl", referer);
 		}
+		// セッションに inputIds があれば表示用にセット（戻ってきたとき用）
+	    String inputIds = (String) session.getAttribute("inputIds");
+	    if (inputIds != null) {
+	        m.addAttribute("ids", inputIds);
+	    }
 		return "deleteForm";
 	}
 	
@@ -79,6 +84,8 @@ public class DeleteController {
 		}
 		//エラーがない場合、直前のURLをセッションに保存
 	    session.setAttribute("previousUrl", "/deleteForm");
+	    //セッションに入力したデータを保存
+	    session.setAttribute("inputIds", ids);
 	    //削除対象の社員IDを社員情報削除(確認)に渡す
 	    m.addAttribute("ids", userIds);
 	    return "deleteFormConfirm";
@@ -89,10 +96,20 @@ public class DeleteController {
 	public String previous(HttpSession session, Model m) {
 		// 保存されているURLを取得
 		String previousUrl = (String) session.getAttribute("previousUrl");
+		//セッションに社員IDが保存されていれば値を渡す
+		String inputIds = (String) session.getAttribute("inputIds");
+		if (inputIds != null) {
+			m.addAttribute("ids", inputIds);
+		}
 		// URLが存在しない場合はメニュ-に遷移
 		if (previousUrl == null || previousUrl.isEmpty()) {
 			return "redirect:/menu";
 		}
+		//deleteFormConfirm.htmlの戻るボタンを押した時
+		if (previousUrl.contains("/deleteForm")) {
+	        return "forward:/deleteForm";
+	    }
+		
 		return "redirect:" + previousUrl;
 	}
 
@@ -101,7 +118,7 @@ public class DeleteController {
 	@PostMapping("/delete")
 	public String delete(
 			Model m,
-			@RequestParam("ids") String idsStr) {
+			@RequestParam("ids") String idsStr, HttpSession session) {
 		// 入力された社員ID文字列をカンマで分割し、Integer型のリストに変換
 		List<Integer> ids = Arrays.stream(idsStr.split(","))
                 .map(Integer::parseInt)
@@ -109,6 +126,8 @@ public class DeleteController {
 		//社員情報を削除
 		service.delete(ids);
 		m.addAttribute("msg", "社員情報の削除が完了しました");
+		//登録後セッションから削除
+		session.removeAttribute("inputIds");
 		return "deleteResult";
 	}
 
