@@ -33,6 +33,14 @@ public class UserController {
 	//社員ID検索して存在すれば社員IDを表示
 	@PostMapping("/selectByIds")
 	public String getByIds(Model m, @RequestParam("ids") String ids, HttpSession session) {
+		// エラーメッセージを格納
+		List<String> errors = new ArrayList<>();
+		// 何も入力されなかった場合
+		if (ids == null || ids.trim().isEmpty()) {
+			errors.add("社員IDを入力してください");
+			m.addAttribute("errors", errors);
+			return "idForm";
+		}
 		// 入力された社員ID文字列をカンマや全角カンマで分割し、空白を取り除き、Integer型のリストに変換
 		List<Integer> idList = Arrays.stream(ids.replace("、", ",").split(","))
 				.map(String::trim)
@@ -42,9 +50,6 @@ public class UserController {
 		List<User> users = service.selectByIds(idList);
 		// セッションからログインユーザ情報を取得
 		Login loginUser = (Login) session.getAttribute("loginUser");
-
-		// エラーメッセージを格納
-		List<String> errors = new ArrayList<>();
 		// 社員IDが存在しない場合
 		if (users.isEmpty()) {
 			errors.add("該当する社員IDがありません");
@@ -63,15 +68,23 @@ public class UserController {
 		// エラーがない場合、社員IDをセッションに格納して遷移
 		m.addAttribute("users", users != null ? users : new ArrayList<>());
 		session.setAttribute("originalIdList", idList);
-
+		//セッションに入力したIDを保存
+		session.setAttribute("inputIds", ids);
 		session.setAttribute("previousUrl", "/idForm");
 		return "id"; // 
+	}
+	//id.htmlからidForm.htmlに戻る
+	@PostMapping("/backToIdForm")
+	public String backToIdForm(HttpSession session, Model model) {
+	    String inputIds = (String) session.getAttribute("inputIds");
+	    model.addAttribute("ids", inputIds);
+	    return "idForm";
 	}
 
 	//id.htmlからdeleteFormConfirm.htmlに遷移
 	//削除したい社員IDを選択
 	@PostMapping("/deleteFormConfirm")
-		public String showDeleteForm(@RequestParam("ids") List<Integer> ids,  Model m) {
+		public String showDeleteForm(@RequestParam("ids") List<Integer> ids, Model m) {
 			m.addAttribute("ids", ids);
 			return "deleteFormConfirm";
 		}
