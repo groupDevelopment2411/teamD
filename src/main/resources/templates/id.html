@@ -14,7 +14,7 @@
 			<span th:text="${#dates.format(#dates.createNow(), 'yyyy/MM/dd HH:mm')}"></span>
 		</p>
 	</header>
-		<form action="/deleteFormConfirm" method="post">
+		<form action="/deleteFormConfirm" method="post" onsubmit="return checkSelected()">
 			<table border="1">
 				<tr>
 					<th>選択</th>
@@ -33,7 +33,21 @@
 			</table>
 			<input type="submit" value="削除">
 		</form>
+		<form action="/backToIdForm" method="post">
+		    <input type="submit" value="戻る">
+		</form>
 	<a href="/logout">ログアウト</a>
+	
+	<script>
+	    function checkSelected() {
+	        const checkboxes = document.querySelectorAll('input[name="ids"]:checked');
+	        if (checkboxes.length === 0) {
+	            alert("削除する社員IDを選択してください。");
+	            return false;
+	        }
+	        return true; 
+	    }
+	</script>
 </body>
 
 </html>

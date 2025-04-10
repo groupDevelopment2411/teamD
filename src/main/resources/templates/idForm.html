@@ -26,7 +26,7 @@
 	</div>
 	<form action="/selectByIds" method="post">
 		<p>複数の社員IDを検索するときは｢,｣をつける</p>
-		社員ID:<input type="text" name="ids"><br>
+		社員ID:<input type="text" name="ids" th:value="${ids}"><br>
 		<input type="submit" value="検索">
 		<input type="button" value="戻る" onclick="history.back()">
 	</form>
