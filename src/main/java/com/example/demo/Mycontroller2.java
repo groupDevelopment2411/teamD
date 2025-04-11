@@ -3,13 +3,13 @@ package com.example.demo;
 import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicReference;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 @RequestMapping("/Select")
 public class Mycontroller2 {
 
@@ -27,4 +27,21 @@ public class Mycontroller2 {
     public Loginentity LoginentityInfo() {
         return userLoginData.get();
     }
+
+
+    @GetMapping("/Sample1")
+    public String Sample1(){
+	return "Sample1";
+}
+    
+    @GetMapping("/Sample2")
+    public String Sample2(){
+    	return "Sample2";
+    }
+    
+    @GetMapping("/Sample3")
+    public String Sample3() {
+    	return "Sample3";
+    }
+    
 }

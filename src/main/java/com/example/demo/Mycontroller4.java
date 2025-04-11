@@ -230,5 +230,10 @@ public String updateForm2(Model model,
 public String Selectback3() {
 	return "index2";
 }
-}
 
+
+@PostMapping("/Kensaku")
+public String Kensaku() {
+	return "Sample1";
+}
+}
