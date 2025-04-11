@@ -105,11 +105,19 @@ public class DeleteController {
 		if (previousUrl == null || previousUrl.isEmpty()) {
 			return "redirect:/menu";
 		}
-		//deleteFormConfirm.htmlの戻るボタンを押した時
+		//deleteForm.htmlからアクセスした時にdeleteFormConfirm.htmlの戻るボタンを押した時
 		if (previousUrl.contains("/deleteForm")) {
 	        return "forward:/deleteForm";
 	    }
-		
+		//id.htmlからアクセスした時にdeleteFormConfirm.htmlの戻るボタンを押した時
+		if (previousUrl.equals("/id.html")) {
+			@SuppressWarnings("unchecked")
+			List<User> allUsers = (List<User>) session.getAttribute("allUsers");
+	        if (allUsers != null) {
+	            m.addAttribute("users", allUsers);
+	        }
+	        return "id";
+	    }
 		return "redirect:" + previousUrl;
 	}
 
@@ -128,6 +136,7 @@ public class DeleteController {
 		m.addAttribute("msg", "社員情報の削除が完了しました");
 		//登録後セッションから削除
 		session.removeAttribute("inputIds");
+		session.removeAttribute("selectedUsers");
 		return "deleteResult";
 	}
 

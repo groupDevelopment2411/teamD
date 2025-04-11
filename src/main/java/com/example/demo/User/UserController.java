@@ -71,7 +71,9 @@ public class UserController {
 		//セッションに入力したIDを保存
 		session.setAttribute("inputIds", ids);
 		session.setAttribute("previousUrl", "/idForm");
-		return "id"; // 
+		//セッションにidForm.htmlで検索したID保存
+		session.setAttribute("allUsers", users);
+		return "id"; 
 	}
 	//id.htmlからidForm.htmlに戻る
 	@PostMapping("/backToIdForm")
@@ -84,8 +86,14 @@ public class UserController {
 	//id.htmlからdeleteFormConfirm.htmlに遷移
 	//削除したい社員IDを選択
 	@PostMapping("/deleteFormConfirm")
-		public String showDeleteForm(@RequestParam("ids") List<Integer> ids, Model m) {
+		public String showDeleteForm(@RequestParam("ids") List<Integer> ids, Model m, HttpSession session) {
+			//戻るボタンを押した時の再表示用
+			List<User> users = service.selectByIds(ids);
 			m.addAttribute("ids", ids);
+			//戻るボタンを押した時用のURL保存
+			session.setAttribute("previousUrl", "/id.html"); 
+			//戻るボタンを押した時の再表示用の保持
+			session.setAttribute("selectedUsers", users);  
 			return "deleteFormConfirm";
 		}
 
