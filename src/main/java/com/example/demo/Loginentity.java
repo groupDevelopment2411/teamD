@@ -3,22 +3,25 @@ package com.example.demo;
 import java.time.LocalDateTime;
 
 public class Loginentity {
-	private int id;
-	private String password;
+	private String id;
+	private String  password;
 	private String name;
 	private LocalDateTime loginTime;
 
 	public Loginentity() {};
-	public Loginentity(int id, String password ,String name ,LocalDateTime loginTime) {
+	public Loginentity(String id, String password ,String name ,LocalDateTime loginTime) {
 		this.id = id;
 		this.password = password;
 		this.name = name;
 		this.loginTime = loginTime;
+		
+		
+		
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getPassword() {
@@ -39,5 +42,4 @@ public class Loginentity {
 	public void setLoginTime(LocalDateTime loginTime) {
 		this.loginTime = loginTime;
 	}
-
 }

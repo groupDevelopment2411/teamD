@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="./index.css">
 </head>
 <body>
+
 	<div class="content">
 		<form action="/Select" method="post">
 
@@ -23,8 +24,19 @@
 		
 		</form>
 	</div>
-	<div style ="color:red;">
-		<p th:if"${errorMessage ! = null}" th:text="${errorMessage}"></p>
-	</div>
+		<script th:inline="javascript">
+		        
+		         window.onload = function() {
+		             var errorMessage = /*[[${errorMessage}]]*/'';
+		             if (errorMessage) {
+		                 alert(errorMessage);
+		             }
+		         }
+		     </script>
+
+	
+
+    <a href="/search">社員検索画面</a>
+
 </body>
 </html>

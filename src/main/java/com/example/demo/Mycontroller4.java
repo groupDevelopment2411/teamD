@@ -37,6 +37,40 @@ public class Mycontroller4 {
 	model.addAttribute("entity",entity);
 	return "index3";
 }
+
+@PostMapping("/IDcheck")
+public String IDcheck(Model m,
+	@RequestParam("id")String id
+) {
+	
+	
+	if(id == null || id.trim().isEmpty()) {
+		m.addAttribute("ErrorMessage","idは必須です");
+		return "index3.5";
+	}
+	int numId;
+	
+	try {
+		numId =Integer.parseInt(id);
+	}catch (NumberFormatException e) {
+		m.addAttribute("errorMessage","idは数値で入力してください");
+		m.addAttribute("id","");
+		return "index3.5";
+	}
+	
+	Entity entity = service.getById(id);
+	
+	m.addAttribute("entity", entity);
+	if(entity == null) {
+		m.addAttribute("errorMessage","データが見つかりませんでした");
+		return "index3.5";
+	}
+	
+	m.addAttribute("entity",entity);
+	return index3;
+}
+
+
 @PostMapping("/update")
 	public String update(
 	Model  m,

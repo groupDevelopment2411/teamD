@@ -29,8 +29,19 @@ public class Mycontroller01 {
 	public String Select(Model m,
 		@RequestParam("id")String id ,
 		@RequestParam("pass")String password){
-		int numId =Integer.parseInt(id);
+		
+		int numId;
+		
+		try {
+			numId =Integer.parseInt(id);
+		}catch (NumberFormatException e) {
+			m.addAttribute("ErrorMessage","idは数値で入力してください");
+			m.addAttribute("id","");
+			return "index";
+		}
+		
 		List<Loginentity> Loginentitys = service.selectById(numId);
+		
 		if(Loginentitys.isEmpty()) {
 			m.addAttribute("errorMessage","IDかパスワードが間違っています。もう一度ご入力ください。");
 			return "index";
