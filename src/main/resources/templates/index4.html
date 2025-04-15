@@ -48,15 +48,15 @@
 	        <li><input type="submit" value="更新"></li>
 	</form>
 		
-	<form id ="updateForm2" th:action="@{/updateForm2}" method="post">
-		<input type="hidden" name="name" th:value="${entity != null ? entity.name : ''}">
-		<input type="hidden" name="age" th:value="${entity != null ? entity.age : ''}">
-		<input type="hidden" name="password" th:value="${entity != null ? entity.password : ''}">
-		<input type="hidden" name="check" th:value="${entity != null ? entity.password : ''}">
-		<input type="hidden" name="start" th:value="${entity != null && entity.start != null ? #dates.format(entity.start, 'yyyy-MM-dd') : ''}">
-		<input type="hidden" name="end" th:value="${entity != null && entity.end != null ? #dates.format(entity.end, 'yyyy-MM-dd') : ''}">
-	     <li><input type="submit" value="戻る"></li>
-		</ul>
+	<form id="updateForm2" th:action="@{/updateForm2}" method="post">
+	    <input type="hidden" name="id" th:value="${entity != null ? entity.id : ''}">
+	    <input type="hidden" name="name" th:value="${entity != null ? entity.name : ''}">
+	    <input type="hidden" name="age" th:value="${entity != null ? entity.age : ''}">
+	    <input type="hidden" name="password" th:value="${entity != null ? entity.password : ''}">
+	    <input type="hidden" name="check" th:value="${entity != null ? entity.password : ''}">
+	    <input type="hidden" name="startS" th:value="${entity != null && entity.start != null ? #dates.format(entity.start, 'yyyy-MM-dd') : ''}">
+	    <input type="hidden" name="endS" th:value="${entity != null && entity.end != null ? #dates.format(entity.end, 'yyyy-MM-dd') : ''}">
+	    <li><input type="submit" value="戻る"></li>
 	</form>
 </body>
 </html>
