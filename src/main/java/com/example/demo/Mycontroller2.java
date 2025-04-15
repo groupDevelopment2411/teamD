@@ -3,6 +3,9 @@ package com.example.demo;
 import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicReference;
 
+import jakarta.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/Select")
 public class Mycontroller2 {
+	@Autowired
+	Loginservice service;
+	@Autowired
+	private HttpSession session;
 
     private final AtomicReference<Loginentity> userLoginData = new AtomicReference<>();
 
@@ -22,7 +29,6 @@ public class Mycontroller2 {
         return "User " + user.getName() + " logged in at " + user.getLoginTime();
         
     }
-
     @GetMapping("/Select")
     public Loginentity LoginentityInfo() {
         return userLoginData.get();
@@ -43,5 +49,5 @@ public class Mycontroller2 {
     public String Sample3() {
     	return "Sample3";
     }
-    
 }
+

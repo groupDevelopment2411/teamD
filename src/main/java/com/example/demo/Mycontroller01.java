@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
@@ -35,7 +36,7 @@ public class Mycontroller01 {
 		try {
 			numId =Integer.parseInt(id);
 		}catch (NumberFormatException e) {
-			m.addAttribute("ErrorMessage","idは数値で入力してください");
+			m.addAttribute("errorMessage","idは数値で入力してください");
 			m.addAttribute("id","");
 			return "index";
 		}
@@ -52,10 +53,12 @@ public class Mycontroller01 {
 		String userName = user.getName();
 		m.addAttribute("userName",user.getName());
 		LocalDateTime currentTime = LocalDateTime.now();
-		m.addAttribute("currentTime",currentTime);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		String formattedTime = currentTime.format(formatter);
+		m.addAttribute("currentTime",formattedTime);
 			this.session.setAttribute("id",user.getId());
 			this.session.setAttribute("userName",userName);
-			this.session.setAttribute("currentTime" , currentTime);
+			this.session.setAttribute("currentTime" , formattedTime);
 		return "index2";
 	}else {
 		m.addAttribute("errorMessage","IDかパスワードが間違っています。もう一度ご入力ください。");
@@ -64,8 +67,4 @@ public class Mycontroller01 {
 	}
 	
 	}
-	
-
-	
-	
 

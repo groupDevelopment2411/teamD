@@ -15,7 +15,14 @@ public class Loginservice {
 	 public List<Loginentity> selectById(int id) {
 		return mapper.selectById(id);
 	}	
-	}
-
+	
+public Loginentity getById(int id) {
+    List<Loginentity> list = mapper.selectById(id);
+    if (list != null && !list.isEmpty()) {
+        return list.get(0); 
+    }
+    return null;
+}
+}
 
 

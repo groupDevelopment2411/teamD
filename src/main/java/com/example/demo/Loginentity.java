@@ -1,11 +1,16 @@
 package com.example.demo;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
+
 
 public class Loginentity {
 	private String id;
 	private String  password;
 	private String name;
+	private String age;
+	private Date start;
+	private Date end;
 	private LocalDateTime loginTime;
 
 	public Loginentity() {};
@@ -36,10 +41,29 @@ public class Loginentity {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
+	public Date getStart() {
+		return start;
+	}
+	public void setStart(Date start) {
+		this.start = start;
+	}
+	public Date getEnd() {
+		return end;
+	}
+	public void setEnd(Date end) {
+		this.end = end;
+	}
 	public LocalDateTime getLoginTime() {
 		return loginTime;
 	}
 	public void setLoginTime(LocalDateTime loginTime) {
 		this.loginTime = loginTime;
 	}
-}
+
+	}
