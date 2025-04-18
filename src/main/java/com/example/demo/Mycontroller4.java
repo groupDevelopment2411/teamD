@@ -50,7 +50,7 @@ public String IDcheck(Model m,
 	Entity entity = service.getById(numId);
 	m.addAttribute("entity", entity);
 	if(entity == null) {
-		m.addAttribute("ErrorMessage","データが見つかりませんでした");
+		m.addAttribute("ErrorMessage","IDが見つかりませんでした。もう一度ご入力ください。");
 		return "index3.5";
 	}else {
 		this.session.setAttribute("id", entity.getId());
@@ -99,13 +99,54 @@ public String Selectbac2k() {
 			@RequestParam(value = "endS", required = false) String endS
 			) {
 
+    Date start = null;
+    Date end = null;
+	int numberAge = 0;
+
+if(startS == null || startS.trim().isEmpty()) {
+	model.addAttribute("ErrorMessage", "開始日は必須です");
+	  model.addAttribute("name", name);
+	  model.addAttribute("age", age); 
+	  model.addAttribute("password", password);
+	  model.addAttribute("check", check);
+	  model.addAttribute("startS", startS);
+	  model.addAttribute("endS", endS);
+	return "index3";
+}
+try {
+	start = Date.valueOf(startS); 
+} catch(IllegalArgumentException e) {
+	model.addAttribute("ErrorMessage","開始日の形式が無効です");
+	 model.addAttribute("name", name);
+	 model.addAttribute("age", age); 
+	 model.addAttribute("password", password);
+	 model.addAttribute("check", check);
+	 model.addAttribute("startS", startS);
+	 model.addAttribute("endS", endS);
+	return "index3";
+}
+
+if (endS != null && !endS.trim().isEmpty()) {
+try {
+	end = Date.valueOf(endS);
+} catch(IllegalArgumentException e) {
+	model.addAttribute("ErrorMessage","終了日の形式が無効です");
+	model.addAttribute("name", name);
+	model.addAttribute("age", age);
+	model.addAttribute("startS", startS);
+	model.addAttribute("endS", endS);
+	return "index3";
+}
+}
+	
+	
 	if(name == null || name.trim().isEmpty()) {
 	model.addAttribute("ErrorMessage","社員名は必須です");
     model.addAttribute("name", name);
     model.addAttribute("age", this.session.getAttribute("age"));
     model.addAttribute("password", this.session.getAttribute("password"));
-    model.addAttribute("start", this.session.getAttribute("start"));
-    model.addAttribute("end", this.session.getAttribute("end"));
+    model.addAttribute("startS", startS);
+	model.addAttribute("endS", endS);
 	return "index3";
 	}
 
@@ -115,11 +156,11 @@ public String Selectbac2k() {
     model.addAttribute("age", age); 
     model.addAttribute("password", this.session.getAttribute("password"));
     model.addAttribute("check", check);
-    model.addAttribute("start", this.session.getAttribute("start"));
-    model.addAttribute("end", this.session.getAttribute("end"));
+    model.addAttribute("startS", startS);
+	model.addAttribute("endS", endS);
 	return "index3";
 	}
-	int numberAge = 0;
+	
 	try {
 		numberAge = Integer.parseInt(age);
 	}catch (NumberFormatException e) {
@@ -128,56 +169,18 @@ public String Selectbac2k() {
     model.addAttribute("age", age); 
     model.addAttribute("password", this.session.getAttribute("password"));
     model.addAttribute("check", check);
-    model.addAttribute("start", this.session.getAttribute("start"));
-    model.addAttribute("end", this.session.getAttribute("end"));
+    model.addAttribute("startS", startS);
+	model.addAttribute("endS", endS);
     return "index3";
 	}
-
-	Date start = null;
-	Date end = null;
-
-if(startS == null || startS.trim().isEmpty()) {
-	model.addAttribute("ErrorMessage", "開始日は必須です");
-	  model.addAttribute("name", name);
-	  model.addAttribute("age", numberAge); 
-	  model.addAttribute("password", password);
-	  model.addAttribute("check", check);
-	  model.addAttribute("start", start);
-	  model.addAttribute("end", end);
-	return "index3";
-}
-try {
-	start = Date.valueOf(startS); 
-} catch(IllegalArgumentException e) {
-	model.addAttribute("ErrorMessage","開始日の形式が無効です");
-	 model.addAttribute("name", name);
-	 model.addAttribute("age", numberAge); 
-	 model.addAttribute("password", password);
-	 model.addAttribute("check", check);
-	 model.addAttribute("start", start);
-	 model.addAttribute("end", end);
-	return "index3";
-}
-
-try {
-	end = Date.valueOf(endS);
-} catch(IllegalArgumentException e) {
-	model.addAttribute("ErrorMessage","終了日の形式が無効です");
-	model.addAttribute("name", name);
-	model.addAttribute("age", numberAge);
-	model.addAttribute("start", start);
-	model.addAttribute("end", "");
-	return "index3";
-}
-
 
 
 if(password == null || password.isEmpty()) {
 	model.addAttribute("ErrorMessage" ,"パスワードは必須です");
 	model.addAttribute("name", name);
 	model.addAttribute("age", numberAge);
-	model.addAttribute("start", start);
-	model.addAttribute("end", end);
+	model.addAttribute("startS", startS);
+	model.addAttribute("endS", endS);
 	model.addAttribute("password", "");
 	return "index3";}
 
@@ -186,8 +189,8 @@ if(!password.matches(".*[A-Z].*")){
 	model.addAttribute("ErrorMessage" ,"パスワードは大文字を一つ以上入力が必須です");
 	model.addAttribute("name", name);
 	model.addAttribute("age", numberAge);
-	model.addAttribute("start", start);
-	model.addAttribute("end", end);
+	model.addAttribute("startS", startS);
+	model.addAttribute("endS", endS);
 	model.addAttribute("password", "");
 	return "index3";
 	
@@ -195,16 +198,16 @@ if(!password.matches(".*[A-Z].*")){
 	model.addAttribute("ErrorMessage" ,"パスワードは8文字以上で入力してください");
 	model.addAttribute("name", name);
 	model.addAttribute("age", numberAge);
-	model.addAttribute("start", start);
-	model.addAttribute("end", end);
+	model.addAttribute("startS", startS);
+	model.addAttribute("endS", endS);
 	model.addAttribute("password", "");
 	return "index3";
 }else if(check == null || check.isEmpty()) {
 	model.addAttribute("ErrorMessage" ,"パスワード確認は必須です");
 	model.addAttribute("name", name);
 	model.addAttribute("age", numberAge);
-	model.addAttribute("start", start);
-	model.addAttribute("end", end);
+	model.addAttribute("startS", startS);
+	model.addAttribute("endS", endS);
 	model.addAttribute("password", "");
 	model.addAttribute("check","");
 	return "index3";
@@ -242,7 +245,7 @@ if(password.equals(check)){
 
 @PostMapping("/Selectback")
 public String Selectback() {
-return "index2";
+return "index3.5";
 }
 
 
@@ -253,10 +256,12 @@ public String updatecomplete(Model  m,
 	@RequestParam("age") String age,
 	@RequestParam("password") String password,
 	@RequestParam("check") String check,
-	@RequestParam(value ="startS",required = false) Date start,
-	@RequestParam (value = "endS", required = false) Date end
+	@RequestParam(value ="startS",required = false) String startS,
+	@RequestParam (value = "endS", required = false) String endS
 	) {
 int numberAge = 0;
+Date start = null;
+Date end = null;
 if(age == null || age.isEmpty()) {
 	m.addAttribute("ErrorMessage","年齢は必須です");
 	return "index4";
@@ -267,6 +272,22 @@ try {
 }catch (NumberFormatException e) {
 	m.addAttribute("ErrorMessage","年齢は数値で入力してください");
 	return "index4";
+}
+if(startS != null && !startS.trim().isEmpty()) {
+    try {
+        start = Date.valueOf(startS);
+    } catch(IllegalArgumentException e) {
+        m.addAttribute("ErrorMessage","開始日の形式が正しくありません");
+        return "index4";
+    }
+}
+if(endS != null && !endS.trim().isEmpty()) {
+    try {
+        end = Date.valueOf(endS);
+    } catch(IllegalArgumentException e) {
+        m.addAttribute("ErrorMessage","終了日の形式が正しくありません");
+        return "index4";
+    }
 }
 if(!password.equals(check)) {
 	m.addAttribute("ErrorMessage","パスワードが一致しません。");
@@ -282,15 +303,40 @@ return "index5";
 
 @PostMapping("/updateForm2")
 public String updateForm2(Model model,
-		@RequestParam("id") int id,
-		@RequestParam("name") String name,
-		@RequestParam("age") String age,
-		@RequestParam("password") String password,
-		@RequestParam("check") String check,
-		@RequestParam(value ="start",required = false) Date start,
-		@RequestParam(value ="end",required = false) Date end
-		){
+	@RequestParam("id") int id,
+	@RequestParam("name") String name,
+	@RequestParam("age") String age,
+	@RequestParam("password") String password,
+	@RequestParam("check") String check,
+	@RequestParam(value ="startS", required = false) String startS,
+	@RequestParam(value ="endS", required = false) String endS
+) {
 	int numberAge = Integer.parseInt(age);
+	
+	java.sql.Date start = null;
+	java.sql.Date end = null;
+	if (startS != null && !startS.trim().isEmpty()) {
+		try {
+			start = java.sql.Date.valueOf(startS);
+		} catch (IllegalArgumentException e) {
+			model.addAttribute("ErrorMessage", "開始日の形式が不正です（yyyy-MM-dd）");
+			model.addAttribute("startS", startS);
+			model.addAttribute("endS", endS);
+			return "index3";
+		}
+	}
+	
+	if (endS != null && !endS.trim().isEmpty()) {
+		try {
+			end = java.sql.Date.valueOf(endS);
+		} catch (IllegalArgumentException e) {
+			model.addAttribute("ErrorMessage", "終了日の形式が不正です（yyyy-MM-dd）");
+			model.addAttribute("startS", startS);
+			model.addAttribute("endS", endS);
+			return "index3";
+		}
+	}
+	
 	Entity entity = new Entity(id,name,numberAge,password,start,end);
 	model.addAttribute("id", id);
 	model.addAttribute("name", entity.getName());  

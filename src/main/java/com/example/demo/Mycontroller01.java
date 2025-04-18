@@ -44,7 +44,7 @@ public class Mycontroller01 {
 		List<Loginentity> Loginentitys = service.selectById(numId);
 		
 		if(Loginentitys.isEmpty()) {
-			m.addAttribute("errorMessage","IDかパスワードが間違っています。もう一度ご入力ください。");
+			m.addAttribute("errorMessage","指定されたIDはありません。ご確認後もう一度入力してください");
 			return "index";
 		}
 		

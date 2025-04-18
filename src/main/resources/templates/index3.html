@@ -48,12 +48,12 @@
      </ul>
      <ul class="start">
           <li>開始日<span class="error-message">*</span></li>
-          <li><input type="date" name="startS" th:value="${entity != null && entity.start != null ? #dates.format(entity.start, 'yyyy-MM-dd') : ''}" maxlength="200" required ></li>
+		  <li><input type="date" name="startS" th:value="${startS != null ? startS : (entity != null && entity.start !=null ? #dates.format(entity.start, 'yyyy-MM-dd') : '')}" maxlength="200" ></li>
 		
 	 </ul>
      <ul class="end">
           <li>終了日<span class="error-message"></span></li>
-          <li><input type="date" name="endS"  th:value="${entity != null && entity.end != null ? #dates.format(entity.end, 'yyyy-MM-dd') : ''}" maxlength="200"></li>	  
+          <li><input type="date" name="endS"  th:value="${endS != null ? endS : (entity != null && entity.end != null ? #dates.format(entity.end, 'yyyy-MM-dd') : '')}" maxlength="200"></li>	  
 	</ul>
 	<h4 class="Error-message" th:if="${ErrorMessage}" th:text="${ErrorMessage}"></h4>
 	<p></p>
